@@ -1,0 +1,4589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Driver/Operator Chapter Quizzes</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚒</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>:root{
+  --bg:#E7EAED; --panel:#FFFFFF; --ink:#1C2126; --muted:#5B6570; --line:#C9CFD5;
+  --red:#B3121D; --yellow:#F2C230; --good:#1F7A45; --goodbg:#E3F3E8; --badbg:#FBE4E5;
+  box-sizing:border-box;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15191D; --panel:#1F252B; --ink:#E9ECEF; --muted:#9AA4AE; --line:#343C44;
+    --red:#E0414B; --good:#4FC27F; --goodbg:#17301F; --badbg:#3A1A1C;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15191D; --panel:#1F252B; --ink:#E9ECEF; --muted:#9AA4AE; --line:#343C44;
+  --red:#E0414B; --good:#4FC27F; --goodbg:#17301F; --badbg:#3A1A1C;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 "Barlow",system-ui,-apple-system,"Segoe UI",sans-serif}
+.stripe{height:14px;margin-top:env(safe-area-inset-top,0px);background:repeating-linear-gradient(135deg,var(--red) 0 22px,var(--yellow) 22px 44px)}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px}
+.top{padding-top:22px}
+h1{font:700 clamp(2rem,6vw,2.9rem)/1.02 "Barlow Condensed","Arial Narrow",sans-serif;margin:0 0 6px;letter-spacing:.01em}
+h2{font:700 1.6rem/1.1 "Barlow Condensed","Arial Narrow",sans-serif;margin:22px 0 12px}
+.sub{color:var(--muted);margin:0 0 14px}
+
+.tabs{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1.5px solid var(--line);
+  padding:10px 18px;padding-top:calc(10px + env(safe-area-inset-top,0px));
+  display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+.tab{flex:0 0 auto;font:700 1rem "Barlow Condensed","Arial Narrow",sans-serif;min-width:44px;padding:6px 10px 4px;
+  border:1.5px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;cursor:pointer;text-align:center;line-height:1.1}
+.tab small{display:block;font:500 11px "Barlow",sans-serif;color:var(--muted)}
+.tab:hover{border-color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.tab[aria-selected="true"] small{color:#fff}
+
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.bar button,.bar select{font:600 15px "Barlow",sans-serif;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);padding:8px 12px;border-radius:6px;cursor:pointer}
+.bar button:hover,.bar select:hover{border-color:var(--ink)}
+.score{margin-left:auto;font:700 1.5rem "Barlow Condensed",sans-serif}
+.score small{font:500 14px "Barlow",sans-serif;color:var(--muted)}
+.progress{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:6px 0 22px}
+.progress span{display:block;height:100%;background:var(--red);width:0;transition:width .25s}
+
+.q{background:var(--panel);border-left:5px solid var(--line);border-radius:4px;padding:18px 18px 14px;margin-bottom:16px}
+.q.right{border-left-color:var(--good)} .q.wrong{border-left-color:var(--red)}
+.qhead{display:flex;gap:10px;align-items:baseline}
+.num{font:700 1.3rem "Barlow Condensed",sans-serif;color:var(--red);min-width:1.6em}
+.prompt{font-weight:600;margin:0}
+.page{color:var(--muted);font-size:14px;margin:4px 0 12px 2.2em}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:10px;text-align:left;width:100%;font:inherit;color:inherit;background:transparent;border:1.5px solid var(--line);border-radius:6px;padding:10px 12px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt:disabled{cursor:default}
+.opt .l{font-weight:700;min-width:1.2em}
+.opt.correct{background:var(--goodbg);border-color:var(--good)}
+.opt.chosen-wrong{background:var(--badbg);border-color:var(--red)}
+.fb{margin:10px 0 0;font-weight:600}
+.fb.good{color:var(--good)} .fb.bad{color:var(--red)}
+button:focus-visible,select:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.empty{background:var(--panel);padding:24px;border-radius:4px;color:var(--muted)}
+.done{background:var(--ink);color:var(--bg);padding:18px;border-radius:4px;margin:8px 0 40px;font-weight:600}
+@media (prefers-reduced-motion:reduce){.progress span{transition:none}}
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+<header class="top">
+  <div class="wrap">
+    <h1>Driver/Operator Quizzes</h1>
+    <p class="sub">Pumping and Aerial Apparatus Driver/Operator Handbook, 4th Ed. Numbers in brackets are textbook pages.</p>
+  </div>
+</header>
+<nav class="tabs" id="tabs" role="tablist" aria-label="Chapters"></nav>
+<main class="wrap">
+  <h2 id="scopeTitle"></h2>
+  <div class="bar">
+    <select id="filter" aria-label="Show questions">
+      <option value="all">All questions</option>
+      <option value="unanswered">Unanswered</option>
+      <option value="missed">Missed</option>
+      <option value="correct">Correct</option>
+    </select>
+    <select id="count" aria-label="Number of questions" hidden>
+      <option value="0">Every question</option>
+      <option value="25">Random 25</option>
+      <option value="50">Random 50</option>
+      <option value="100">Random 100</option>
+    </select>
+    <button id="shuffle">Shuffle</button>
+    <button id="retry">Retry missed</button>
+    <button id="reset">Reset</button>
+    <div class="score" id="score"></div>
+  </div>
+  <div class="progress"><span id="prog"></span></div>
+  <div id="list"></div>
+</main>
+<script>// Generated from Chapter_XX_Quiz.docx + Chapter_XX_Quiz_Key.docx (matched by chapter number)
+const CHAPTERS = [
+ {
+  "ch": 1,
+  "title": "General Apparatus Visual/Operational Checks",
+  "qs": [
+   {
+    "n": 1,
+    "p": "Which NFPA standard specifically requires the driver/operator (D/O) to perform visual and operational checks?",
+    "pg": "9",
+    "o": [
+     "NFPA 1010",
+     "NFPA 1003",
+     "NFPA 1021",
+     "NFPA 1026"
+    ],
+    "a": 0
+   },
+   {
+    "n": 2,
+    "p": "Why is it important for a D/O to perform preventative maintenance on the apparatus?",
+    "pg": "10",
+    "o": [
+     "To prevent some apparatus or equipment failures",
+     "So the D/O can earn a degree in fire protection technology",
+     "To increase downtime when the apparatus is in an accident",
+     "To gain knowledge in the electrical and mechanical systems"
+    ],
+    "a": 0
+   },
+   {
+    "n": 3,
+    "p": "Typically, career fire departments require D/Os to perform apparatus checks on a _____ basis.",
+    "pg": "11",
+    "o": [
+     "daily",
+     "monthly",
+     "quarterly",
+     "annual"
+    ],
+    "a": 0
+   },
+   {
+    "n": 4,
+    "p": "For fire companies responding to a rescue and emergency scene, part of an essential general infection control practice is to:",
+    "pg": "15",
+    "o": [
+     "isolate vectors.",
+     "isolate biohazards.",
+     "clean up biohazards.",
+     "identify chemical materials."
+    ],
+    "a": 1
+   },
+   {
+    "n": 5,
+    "p": "If an apparatus becomes contaminated with products of combustion, personnel should wear _____ while conducting decontamination operations.",
+    "pg": "16",
+    "o": [
+     "firefighter bunker gear",
+     "their daily work uniform",
+     "appropriate respiratory protection and PPE",
+     "a fully encapsulated chemically protected suit"
+    ],
+    "a": 2
+   },
+   {
+    "n": 6,
+    "p": "After washing the exterior of an apparatus, failure to dry the vehicle thoroughly may encourage:",
+    "pg": "18",
+    "o": [
+     "the brake system to fail.",
+     "spotting and/or corrosion.",
+     "damage to the steering system.",
+     "damage to the pump equipment."
+    ],
+    "a": 1
+   },
+   {
+    "n": 7,
+    "p": "During a walk-around check, the D/Os should ensure that the cable connections for the batteries are tight and protected with:",
+    "pg": "23",
+    "o": [
+     "plastic covers.",
+     "a film of grease.",
+     "a film of aqueous gel.",
+     "an explosion-proof case."
+    ],
+    "a": 1
+   },
+   {
+    "n": 8,
+    "p": "When should fluid level checks on an apparatus be conducted?",
+    "pg": "24",
+    "o": [
+     "After the apparatus has been started",
+     "When the pressurized fluid cap is hot",
+     "Before the apparatus has been started",
+     "When the warning gauge gives a warning"
+    ],
+    "a": 2
+   },
+   {
+    "n": 9,
+    "p": "At a minimum, a thorough brake test should be performed _____ on an apparatus.",
+    "pg": "28",
+    "o": [
+     "annually",
+     "quarterly",
+     "monthly",
+     "weekly"
+    ],
+    "a": 0
+   },
+   {
+    "n": 10,
+    "p": "The purpose of diesel particulate filters (DPFs) are to trap:",
+    "pg": "29",
+    "o": [
+     "all of the sediments in oil fluids.",
+     "all fuel impurities in the system.",
+     "micrometric particles through the air.",
+     "particulate matter in exhaust emissions."
+    ],
+    "a": 3
+   },
+   {
+    "n": 11,
+    "p": "What precautions must the D/O take during an exterior inspection when the apparatus is parked with the engine running?",
+    "pg": "30",
+    "o": [
+     "All present personnel have donned gear and are ready for an inspection",
+     "All required resources for inspection and maintenance are readily available",
+     "Chock the wheels and ensure the apparatus fluid tanks are at least three-quarters full",
+     "Wheels are chocked according to manufacturer's recommendations, policies, and procedures"
+    ],
+    "a": 3
+   }
+  ]
+ },
+ {
+  "ch": 2,
+  "title": "Apparatus Safety and Driving Emergency Vehicles",
+  "qs": [
+   {
+    "n": 1,
+    "p": "According to NFPA 1010, which certification must first be attained before becoming an aerial operator?",
+    "pg": "55",
+    "o": [
+     "Fire Officer I",
+     "Fire Fighter I",
+     "Fire Fighter II",
+     "Fire Inspector II"
+    ],
+    "a": 1
+   },
+   {
+    "n": 2,
+    "p": "Which U.S. agency establishes special requirements for licensing drivers of trucks and other large vehicles?",
+    "pg": "55",
+    "o": [
+     "Department of Interior",
+     "Commerce Department",
+     "Department of Transportation",
+     "Bureau of Transportation and Statistics"
+    ],
+    "a": 2
+   },
+   {
+    "n": 3,
+    "p": "What is a driving regulation that a D/O must adhere to?",
+    "pg": "56",
+    "o": [
+     "Union codes",
+     "Federal laws",
+     "International laws",
+     "Manufacturer standards"
+    ],
+    "a": 1
+   },
+   {
+    "n": 4,
+    "p": "Failure to follow appropriate laws and policies may:",
+    "pg": "56",
+    "o": [
+     "result in criminal and/or civil charges.",
+     "require specific AHJ policy intervention.",
+     "indicate that the D/O does not know how to read.",
+     "indicate that laws and policies need to be updated."
+    ],
+    "a": 0
+   },
+   {
+    "n": 5,
+    "p": "NFPA 1550 requires that:",
+    "pg": "57",
+    "o": [
+     "D/Os in apparatus wear SCBA.",
+     "personnel in apparatus wear seat belts.",
+     "D/Os in apparatus wear boots and helmets.",
+     "personnel in apparatus wear safety glasses."
+    ],
+    "a": 1
+   },
+   {
+    "n": 6,
+    "p": "Whether for an emergency response or routine trip, what must the D/O know first?",
+    "pg": "66",
+    "o": [
+     "Which apparatus to drive",
+     "The destination and route of travel",
+     "How long it will take to get to the destination",
+     "The destination and how many firefighters are going to travel"
+    ],
+    "a": 1
+   },
+   {
+    "n": 7,
+    "p": "Starting in 2010, apparatus equipped with selective catalytic reduction (SCR) reduced the emission of harmful _____ into the environment.",
+    "pg": "67",
+    "o": [
+     "derates",
+     "regeneration",
+     "nitrogen oxides (NOx)",
+     "polypropylene glycol (PPG)"
+    ],
+    "a": 2
+   },
+   {
+    "n": 8,
+    "p": "Which switch allows the D/O to prevent the engine from initiating an active regeneration process?",
+    "pg": "69",
+    "o": [
+     "Battery switch",
+     "Generation switch",
+     "Diesel emission switch",
+     "Regeneration inhibit switch"
+    ],
+    "a": 3
+   },
+   {
+    "n": 9,
+    "p": "All firefighters performing spotting duties during backing operations should wear reflective safety:",
+    "pg": "71",
+    "o": [
+     "vests.",
+     "boots.",
+     "gloves.",
+     "helmets."
+    ],
+    "a": 0
+   },
+   {
+    "n": 10,
+    "p": "What is a guideline to help D/Os avoid collisions?",
+    "pg": "74",
+    "o": [
+     "Keep your eyes focused on one spot on the road",
+     "Keep high beam headlights on at all times while en route to an emergency",
+     "Maintain the appropriate distance between the apparatus and the vehicle ahead",
+     "Maintain a low steering aim at every intersection, even if warning devices are used"
+    ],
+    "a": 2
+   },
+   {
+    "n": 11,
+    "p": "Fire apparatus are relatively top-heavy and therefore have:",
+    "pg": "76",
+    "o": [
+     "no center of gravity.",
+     "a low center of gravity.",
+     "a high center of gravity.",
+     "a displaced center of gravity."
+    ],
+    "a": 2
+   },
+   {
+    "n": 12,
+    "p": "When driving an apparatus downhill, shifting should be done:",
+    "pg": "78",
+    "o": [
+     "while descending.",
+     "prior to descending.",
+     "after the apparatus has reached a speed of 10 mph (16 kph).",
+     "after the apparatus has developed a speed greater than 5 mph (8 kph)."
+    ],
+    "a": 1
+   },
+   {
+    "n": 13,
+    "p": "What occurs when the throttle is at maximum and a manual transmission is in too high a gear for the speed of the vehicle?",
+    "pg": "78",
+    "o": [
+     "Tail swing",
+     "Freewheel",
+     "Engine lugging",
+     "Engine regeneration"
+    ],
+    "a": 2
+   },
+   {
+    "n": 14,
+    "p": "Emergency lights and sirens:",
+    "pg": "99",
+    "o": [
+     "guarantee the D/O the right-of-way.",
+     "do not guarantee the D/O the right-of-way.",
+     "warn the general public of an emergency presence and guarantee the D/O the right-of-way.",
+     "warn the general public of an emergency presence and guarantee that the public will yield to your presence on the road."
+    ],
+    "a": 1
+   }
+  ]
+ },
+ {
+  "ch": 3,
+  "title": "Positioning Pumping Apparatus",
+  "qs": [
+   {
+    "n": 1,
+    "p": "When fire conditions are evident upon arrival of an incident, the D/O should place the apparatus in a position that:",
+    "pg": "124",
+    "o": [
+     "has the least heat radiation.",
+     "is downhill from the fireground.",
+     "offers the best tactical advantage.",
+     "provides a 360-degree view of the incident."
+    ],
+    "a": 2
+   },
+   {
+    "n": 2,
+    "p": "When positioning apparatus for fire attack, district familiarization and _____ will assist the D/O in making informed decisions regarding apparatus position.",
+    "pg": "125",
+    "o": [
+     "weather reports",
+     "predischarged data",
+     "geopositioning data",
+     "preincident planning"
+    ],
+    "a": 3
+   },
+   {
+    "n": 3,
+    "p": "Where must the pumper be positioned if hand lines or portable master streams are to be used?",
+    "pg": "126",
+    "o": [
+     "At the backside of the structure",
+     "In close proximity to the structure or incident scene",
+     "Off the roadway, as far from the structure as possible",
+     "As far from the structure or incident scene as possible"
+    ],
+    "a": 1
+   },
+   {
+    "n": 4,
+    "p": "Apparatus and personnel should maintain a collapse zone of at least:",
+    "pg": "126",
+    "o": [
+     "three times the length of the fire apparatus.",
+     "one and a half times the width of any structure determined likely to collapse.",
+     "one and a half times the height of any structure determined likely to collapse.",
+     "the hypotenuse of the right angle formed between the structure and the fire apparatus."
+    ],
+    "a": 2
+   },
+   {
+    "n": 5,
+    "p": "What is a D/Os responsibility when positioning to support fire department connections?",
+    "pg": "129",
+    "o": [
+     "The total number of fire attack hose lines needed",
+     "Know specific target hazards identified by the department",
+     "The number of fire apparatus attending to the emergency site",
+     "The location of positions for alternative static water sources for drafting operations"
+    ],
+    "a": 1
+   },
+   {
+    "n": 6,
+    "p": "When considering any questionable location for apparatus drafting, D/Os should conduct a _____ analysis.",
+    "pg": "131",
+    "o": [
+     "fault tree",
+     "situational",
+     "risk/benefit",
+     "risk/exposure"
+    ],
+    "a": 2
+   },
+   {
+    "n": 7,
+    "p": "What is the preferred type of hose for a hydrant connection?",
+    "pg": "132",
+    "o": [
+     "Booster hose",
+     "Hard suction hose",
+     "Small-diameter fire hose",
+     "Large-diameter intake hose"
+    ],
+    "a": 3
+   },
+   {
+    "n": 8,
+    "p": "Which on-scene role advises the planning section or IC as to the status of resource availability?",
+    "pg": "136",
+    "o": [
+     "Driver/operator",
+     "Pumper spotter",
+     "Company officer",
+     "Staging area manager"
+    ],
+    "a": 3
+   },
+   {
+    "n": 9,
+    "p": "In which hazard-control zone is the apparatus staging area most likely to be located?",
+    "pg": "136",
+    "o": [
+     "Level I",
+     "Level II",
+     "Hot zone",
+     "Cold zone"
+    ],
+    "a": 3
+   },
+   {
+    "n": 10,
+    "p": "If scene conditions allow, avoid exposing the _____ to traffic, especially if you must use the apparatus for a vehicle fire.",
+    "pg": "137",
+    "o": [
+     "front end",
+     "rear mount",
+     "pump panel",
+     "driver's side cab"
+    ],
+    "a": 2
+   },
+   {
+    "n": 11,
+    "p": "Fog reduces visibility while positioning, causing a reduction in _____ time.",
+    "pg": "139",
+    "o": [
+     "brake",
+     "release",
+     "stoping",
+     "perception"
+    ],
+    "a": 3
+   },
+   {
+    "n": 12,
+    "p": "During which type of incident response would the D/O need to know the apparatus GVWR to ensure safe operation?",
+    "pg": "142",
+    "o": [
+     "Bridge",
+     "Airport",
+     "Railroad",
+     "Highway"
+    ],
+    "a": 0
+   },
+   {
+    "n": 13,
+    "p": "When operating at storage tank fires, the apparatus should never be spotted:",
+    "pg": "146",
+    "o": [
+     "outside the warm zone.",
+     "backed into a dead-end zone.",
+     "within 1/6 mile from the nearest tank.",
+     "inside the dike that surrounds any tank(s)."
+    ],
+    "a": 3
+   }
+  ]
+ },
+ {
+  "ch": 4,
+  "title": "Principles of Water",
+  "qs": [
+   {
+    "n": 1,
+    "p": "Water’s weight varies at different:",
+    "pg": "162",
+    "o": [
+     "locations.",
+     "pressures.",
+     "containers.",
+     "temperatures."
+    ],
+    "a": 3
+   },
+   {
+    "n": 2,
+    "p": "What characteristic makes water an excellent extinguishing agent?",
+    "pg": "162",
+    "o": [
+     "Larger surface tension",
+     "Powerful chemical inhibitor",
+     "Greater heat-absorbing capacity",
+     "Higher surface density than other agents"
+    ],
+    "a": 2
+   },
+   {
+    "n": 3,
+    "p": "The greater its surface area is exposed, water will:",
+    "pg": "162",
+    "o": [
+     "incur greater friction loss.",
+     "absorb heat more rapidly.",
+     "gain pressure more quickly.",
+     "slowly heat as it is absorbed."
+    ],
+    "a": 1
+   },
+   {
+    "n": 4,
+    "p": "Which is a disadvantage of using water as an extinguishing agent?",
+    "pg": "163",
+    "o": [
+     "High density",
+     "High latent heat of evaporation",
+     "May be reactive with certain fuels",
+     "Creates a barrier between the fuel source and the oxygen source"
+    ],
+    "a": 2
+   },
+   {
+    "n": 5,
+    "p": "Which water pressure principle states that fluid pressure is perpendicular to any surface on which it acts?",
+    "pg": "165",
+    "o": [
+     "Sixth pressure principle: Shape",
+     "Fourth pressure principle: Depth",
+     "Third pressure principle: Intensity",
+     "First pressure principle: Perpendicular exertion"
+    ],
+    "a": 3
+   },
+   {
+    "n": 6,
+    "p": "In the fire service, the height of a water supply above the discharge orifice is referred to as:",
+    "pg": "167",
+    "o": [
+     "head pressure.",
+     "direct pumping.",
+     "velocity pressure.",
+     "coefficient of friction."
+    ],
+    "a": 0
+   },
+   {
+    "n": 7,
+    "p": "While water is flowing from a discharge opening, the forward velocity pressure is considered:",
+    "pg": "169",
+    "o": [
+     "turbulence.",
+     "laminar flow.",
+     "flow pressure.",
+     "static pressure."
+    ],
+    "a": 2
+   },
+   {
+    "n": 8,
+    "p": "Which type of pressure reading gauge is capable of reading water pressures above or below zero?",
+    "pg": "169",
+    "o": [
+     "Limit",
+     "Precision",
+     "Compound",
+     "Mechanical"
+    ],
+    "a": 2
+   },
+   {
+    "n": 9,
+    "p": "The height or drop when comparing the centerline of the pump to the nozzle is referred to as:",
+    "pg": "170",
+    "o": [
+     "range.",
+     "altitude.",
+     "elevation.",
+     "elongation."
+    ],
+    "a": 2
+   },
+   {
+    "n": 10,
+    "p": "Part of the total water pressure that is lost while forcing water through pipe, fittings, fire hose, and adapter is:",
+    "pg": "170",
+    "o": [
+     "friction loss.",
+     "velocity loss.",
+     "pressure gain.",
+     "acceleration loss."
+    ],
+    "a": 0
+   },
+   {
+    "n": 11,
+    "p": "The coefficient of friction refers to the _____ of the inner surface of the pipe.",
+    "pg": "171",
+    "o": [
+     "ductility",
+     "hardness",
+     "thickness",
+     "roughness"
+    ],
+    "a": 3
+   },
+   {
+    "n": 12,
+    "p": "What is a fundamental component of a water system?",
+    "pg": "176",
+    "o": [
+     "Solenoid valves",
+     "Ductile iron pipe",
+     "Clean fuel pumps",
+     "Means of moving water"
+    ],
+    "a": 3
+   },
+   {
+    "n": 13,
+    "p": "Which water system uses a primary water source located at a higher elevation than the distribution system?",
+    "pg": "177",
+    "o": [
+     "Private",
+     "Gravity",
+     "Combination",
+     "Direct pumping"
+    ],
+    "a": 1
+   }
+  ]
+ },
+ {
+  "ch": 5,
+  "title": "Hose Nozzles and Flow Rates",
+  "qs": [
+   {
+    "n": 1,
+    "p": "Which handline nozzles are designed so that the water flowing through the nozzle is gradually reduced until just before the orifice?",
+    "pg": "188",
+    "o": [
+     "Fog",
+     "Solid",
+     "Master",
+     "Broken"
+    ],
+    "a": 1
+   },
+   {
+    "n": 2,
+    "p": "The narrowest pattern of fire stream produced from a fog nozzle is a _____ stream.",
+    "pg": "190",
+    "o": [
+     "solid",
+     "direct",
+     "straight",
+     "concentric"
+    ],
+    "a": 2
+   },
+   {
+    "n": 3,
+    "p": "Which two nozzles are capable to discharge predetermined gallonage when properly supplied?",
+    "pg": "192",
+    "o": [
+     "Selectable gallonage and constant flow",
+     "Automatic fog and constant flow nozzles",
+     "Selectable gallonage and impingement fog",
+     "Selectable gallonage and periphery-deflected"
+    ],
+    "a": 0
+   },
+   {
+    "n": 4,
+    "p": "With a constant flow nozzle, the gallonage is based on:",
+    "pg": "192",
+    "o": [
+     "a specified range set by the D/O.",
+     "the specifications established by the fire truck manufacturer.",
+     "a specified range as indicated by the pump discharge pressure.",
+     "the specifications established by the manufacturer of the nozzle."
+    ],
+    "a": 3
+   },
+   {
+    "n": 5,
+    "p": "Which fog nozzle adjusts to fluctuating water flow to maintain effective pressure and a consistent fire stream in all flow ranges?",
+    "pg": "193",
+    "o": [
+     "Automatic",
+     "Solid stream",
+     "Cellar nozzle",
+     "High pressure"
+    ],
+    "a": 0
+   },
+   {
+    "n": 6,
+    "p": "Master stream appliances should function at an optimum of _____ at the nozzle.",
+    "pg": "193",
+    "o": [
+     "80 psi (560 kPa)",
+     "100 psi (700 kPa)",
+     "120 psi (850 kPa)",
+     "140 psi (1 000 kPa)"
+    ],
+    "a": 0
+   },
+   {
+    "n": 7,
+    "p": "Fixed, combination, and portable are the three basic types of:",
+    "pg": "194",
+    "o": [
+     "manual fire pumps.",
+     "automatic sprinklers.",
+     "automatic fog nozzles.",
+     "master stream devices."
+    ],
+    "a": 3
+   },
+   {
+    "n": 8,
+    "p": "Which special-purpose nozzle is commonly used in aircraft fire fighting, car fires, or to apply water to voids, attics, or other areas inaccessible to standard fire streams?",
+    "pg": "196",
+    "o": [
+     "Piercing",
+     "Chimney",
+     "Smooth bore",
+     "High-Pressure"
+    ],
+    "a": 0
+   },
+   {
+    "n": 9,
+    "p": "The counterforce that pushes back against firefighters while operating the hoseline is called:",
+    "pg": "196",
+    "o": [
+     "inertia.",
+     "G-force.",
+     "reaction time.",
+     "nozzle reaction."
+    ],
+    "a": 3
+   },
+   {
+    "n": 10,
+    "p": "Even when D/Os are not responsible for determining the best configurations for preconnected attack lines and nozzle choices, they should know:",
+    "pg": "197",
+    "o": [
+     "when high-pressure fog nozzles are appropriate.",
+     "the manufacturer for special-purpose nozzle applications.",
+     "how to develop realistic layouts for judicial requirements.",
+     "the nozzle reaction that a fire attack team will encounter."
+    ],
+    "a": 3
+   }
+  ]
+ },
+ {
+  "ch": 6,
+  "title": "Theoretical Pressure Calculations",
+  "qs": [
+   {
+    "n": 1,
+    "p": "When combined, friction loss, appliance loss, and elevation loss or gains comprise:",
+    "pg": "204",
+    "o": [
+     "head pressure.",
+     "combined pressure.",
+     "total pressure loss (TPL).",
+     "net pump discharge pressure (NPDP)."
+    ],
+    "a": 2
+   },
+   {
+    "n": 2,
+    "p": "To achieve more accurate numbers when calculating friction loss, driver/operators (D/Os) can:",
+    "pg": "206",
+    "o": [
+     "install a pressure reader in all hoses.",
+     "test equipment in conditions similar to fire scenes.",
+     "insert standardized values in the hydraulic formula.",
+     "use electronic pressure gauges on every discharge."
+    ],
+    "a": 1
+   },
+   {
+    "n": 3,
+    "p": "As the fire stream flow doubles:",
+    "pg": "206",
+    "o": [
+     "water head triples.",
+     "appliance loss triples.",
+     "turbulence quadruples.",
+     "friction loss quadruples."
+    ],
+    "a": 3
+   },
+   {
+    "n": 4,
+    "p": "One accurate method for determining pressure loss in a particular hose lay involves measuring the pressure at:",
+    "pg": "207",
+    "o": [
+     "the end of a particular hoseline and dividing by 3.",
+     "both ends of the hoseline and subtracting the difference.",
+     "the beginning of the hoseline and subtracting the net pressure.",
+     "the first hose connection and dividing by the number of hose used."
+    ],
+    "a": 1
+   },
+   {
+    "n": 5,
+    "p": "Pitot tube or flowmeter, two in-line gauges, hose, and a nozzle are the equipment required for testing:",
+    "pg": "207",
+    "o": [
+     "airtightness of a hose lay.",
+     "pressure head of a water system.",
+     "pressure loss in a particular hose lay.",
+     "water leakage in any particular hose lay."
+    ],
+    "a": 2
+   },
+   {
+    "n": 6,
+    "p": "Before averaging the results of total pressure loss, D/Os must:",
+    "pg": "208",
+    "o": [
+     "base test results on the hypothetical measuring data.",
+     "conduct testing using hoses used during decontamination operations.",
+     "test one diameter of hose of the same construction and manufacturer at a time.",
+     "test different diameters of hose of the same construction and manufacturer at a time."
+    ],
+    "a": 2
+   },
+   {
+    "n": 7,
+    "p": "Elevation pressure loss occurs when the nozzle is:",
+    "pg": "210",
+    "o": [
+     "used with couplings.",
+     "lower than the pump.",
+     "higher than the pump.",
+     "used with synthetic hoses."
+    ],
+    "a": 2
+   },
+   {
+    "n": 8,
+    "p": "When calculating pressure loss for a master stream device, the D/O must add _____ to the pressure loss calculation.",
+    "pg": "213",
+    "o": [
+     "5 psi (35 kPa)",
+     "10 psi (70 kPa)",
+     "25 psi (175 kPa)",
+     "50 psi (350 kPa)"
+    ],
+    "a": 2
+   },
+   {
+    "n": 9,
+    "p": "When hoselines connected to a manifold are unequal and/or the diameter is different, the TPL in the system is based on the:",
+    "pg": "215",
+    "o": [
+     "estimated gpm provided by the pumper.",
+     "pressure indicated on the discharge valve.",
+     "lowest pressure required in any of the hoselines.",
+     "highest pressure requested in any of the hoselines."
+    ],
+    "a": 3
+   },
+   {
+    "n": 10,
+    "p": "To determine the net pump discharge pressure (NPDP) of a centrifugal fire pump drafting water from a static source, the D/O must:",
+    "pg": "217",
+    "o": [
+     "look for the correct value on hydraulic tables.",
+     "add the pressure indicated on the pump discharge gauge.",
+     "subtract the pressure indicated on the pump discharge gauge.",
+     "take advantage of the positive pressure from the water source."
+    ],
+    "a": 1
+   }
+  ]
+ },
+ {
+  "ch": 7,
+  "title": "Fireground Hydraulic Calculations",
+  "qs": [
+   {
+    "n": 1,
+    "p": "What is one downside of only considering the water flow (gpm[L/min]) from a discharge when performing fireground hydraulic calculations?",
+    "pg": "262",
+    "o": [
+     "Flow pressure could drop too low and cause pump cavitation",
+     "Flow pressure could be restricted beyond what the flowmeter can maintain",
+     "The flow can only be measured on an individual discharge when the line’s nozzle is open",
+     "The flow can only be measured on an individual discharge when that line’s nozzle is closed"
+    ],
+    "a": 2
+   },
+   {
+    "n": 2,
+    "p": "Safe operating pressures exist for equipment such as hose and standpipes, and the D/O can exceed those pressures if only the _____ is considered.",
+    "pg": "262",
+    "o": [
+     "flow from the nozzle",
+     "flow from the flowmeter",
+     "pressure from the pump",
+     "pressure from the pressure gauge"
+    ],
+    "a": 0
+   },
+   {
+    "n": 3,
+    "p": "What additional information can the D/O obtain from monitoring devices?",
+    "pg": "263",
+    "o": [
+     "Total water pressure after the incident",
+     "Flow through only one specific discharge",
+     "Flow through only two specific discharges",
+     "Total water flow through the pump in real time"
+    ],
+    "a": 3
+   },
+   {
+    "n": 4,
+    "p": "Flowmeters must display flow in increments of _____ or less.",
+    "pg": "263",
+    "o": [
+     "25 gpm (95 L/min)",
+     "20 gpm (76 L/min)",
+     "15 gpm (57 L/min)",
+     "10 gpm (40 L/min)"
+    ],
+    "a": 3
+   },
+   {
+    "n": 5,
+    "p": "How can a D/O establish the correct discharge pressure to adequately supply water to the receiving pumper in a relay pumping operation?",
+    "pg": "264",
+    "o": [
+     "The attack pumper(s) increases their flow, as the D/O increases the throttle on a relay pumper until the flowmeter stabilizes",
+     "The relay pumper(s) increases their flow, as the D/O increases the throttle on the attack pumper until the flowmeter stabilizes",
+     "The attack pumper(s) increases their flow, as the D/O increases the throttle on a relay pumper until the flowmeter reading decreases",
+     "The relay pumper(s) increases their flow, as the D/O increases the throttle on the attack pumper until the flowmeter reading decreases"
+    ],
+    "a": 0
+   },
+   {
+    "n": 6,
+    "p": "Apparatus equipped with electronic pressure governors involved in relay pumping, with the exception of the attack pumper, should operate in _____ mode.",
+    "pg": "264",
+    "o": [
+     "manual",
+     "revolutions per minute (rpm)",
+     "gallons per minute (gpm [L/min])",
+     "pound per square inch (psi [kPa])"
+    ],
+    "a": 1
+   },
+   {
+    "n": 7,
+    "p": "The D/O must consider that even when a standpipe or hoseline is charged, there is no _____ through the system or hose layout until nozzles are open.",
+    "pg": "265",
+    "o": [
+     "flow",
+     "load",
+     "resistance",
+     "static pressure"
+    ],
+    "a": 0
+   },
+   {
+    "n": 8,
+    "p": "The manual version of the _____ consists of a slide or dial that can be moved to cover or reveal rates of flow, size of hose, and length of hose layout.",
+    "pg": "265",
+    "o": [
+     "flowmeter",
+     "tachometer",
+     "scientific calculator",
+     "hydraulic calculator"
+    ],
+    "a": 3
+   },
+   {
+    "n": 9,
+    "p": "Some AHJ-prescribed operating flows or pressures may come from:",
+    "pg": "266",
+    "o": [
+     "NFPA 1710.",
+     "NFPA 1900.",
+     "ISO 18001.",
+     "ISO 45001."
+    ],
+    "a": 0
+   },
+   {
+    "n": 10,
+    "p": "Fire departments will most often develop pump charts that contain information specific to:",
+    "pg": "266",
+    "o": [
+     "regional locations.",
+     "all types of apparatus nationwide.",
+     "their jurisdiction’s equipment and common hose layout operations.",
+     "other jurisdictions’ equipment and common hose layout operations."
+    ],
+    "a": 2
+   }
+  ]
+ },
+ {
+  "ch": 8,
+  "title": "Fire Pump Characteristics",
+  "qs": [
+   {
+    "n": 1,
+    "p": "Fire pump sizes are determined by their rated capacities in gallons per minute (gpm) (liters per minute [L/min]) and in increments of:",
+    "pg": "273",
+    "o": [
+     "150 gpm (600 L/min).",
+     "250 gpm (1 000 L/min).",
+     "350 gpm (1 400 L/min).",
+     "450 gpm (2 000 L/min)."
+    ],
+    "a": 1
+   },
+   {
+    "n": 2,
+    "p": "A non-positive displacement pump:",
+    "pg": "274",
+    "o": [
+     "builds velocity of water by decreasing the pressure.",
+     "pumps a definite amount of water with each revolution.",
+     "does not pump a definite amount of water with each revolution.",
+     "does not build pressure by increasing the velocity of water as it leaves the pump."
+    ],
+    "a": 2
+   },
+   {
+    "n": 3,
+    "p": "The faster the impeller on a centrifugal pump turns:",
+    "pg": "274",
+    "o": [
+     "the faster the water heats.",
+     "the slower the water is thrown.",
+     "the harder the water is thrown.",
+     "the faster the water cools down."
+    ],
+    "a": 2
+   },
+   {
+    "n": 4,
+    "p": "A centrifugal pump with a larger impeller and a larger eye allows:",
+    "pg": "274",
+    "o": [
+     "lesser water flow.",
+     "greater water flow.",
+     "lower water velocity.",
+     "higher water velocity."
+    ],
+    "a": 1
+   },
+   {
+    "n": 5,
+    "p": "In two-stage centrifugal pumps, how many impellers are contained for each stage mounted in a single housing?",
+    "pg": "276",
+    "o": [
+     "One",
+     "Two",
+     "Four",
+     "Three"
+    ],
+    "a": 0
+   },
+   {
+    "n": 6,
+    "p": "In a two-stage centrifugal pump, the process of switching between pressure and volume in the apparatus is referred to as:",
+    "pg": "278",
+    "o": [
+     "takeover.",
+     "gear switch.",
+     "changeover.",
+     "valve switch."
+    ],
+    "a": 2
+   },
+   {
+    "n": 7,
+    "p": "Setting the pump transfer valve to series allows:",
+    "pg": "278",
+    "o": [
+     "minimum pressure and maximum volume.",
+     "maximum pressure and maximum volume.",
+     "minimum volume and will limit available pressure.",
+     "maximum pressure but will limit available volume."
+    ],
+    "a": 3
+   },
+   {
+    "n": 8,
+    "p": "The terminology deadheading is used when:",
+    "pg": "280",
+    "o": [
+     "water pushes back out of a pump's intake.",
+     "water flows from the discharge side of the pump.",
+     "no water flows from the discharge side of the pump.",
+     "no pressure is available in the discharge side of the pump."
+    ],
+    "a": 2
+   },
+   {
+    "n": 9,
+    "p": "What may happen if the packing glands of the pump are too tight?",
+    "pg": "282",
+    "o": [
+     "Glands will brake",
+     "Water will drip from the glands",
+     "No water will drip from the glands",
+     "Glands will require extra lubrication"
+    ],
+    "a": 2
+   },
+   {
+    "n": 10,
+    "p": "What is usually the gear ratio at which the impeller turns faster than the engine to achieve the rated capacity of a midship transfer pump?",
+    "pg": "283",
+    "o": [
+     "At least three (3) times more",
+     "Less than one (1) time as fast",
+     "More than two and a half (2½) times as fast",
+     "One and a half (1½) to two and a half (2½) times as fast"
+    ],
+    "a": 3
+   },
+   {
+    "n": 11,
+    "p": "With the engine idling and pump engaged, what should most midship transfer case pump’s speedometers indicate?",
+    "pg": "283",
+    "o": [
+     "Between 10 to 15 mph (15 to 25 km/h)",
+     "Between 15 to 20 mph (25 to 32 km/h)",
+     "Between 20 to 25 mph (32 to 40 km/h)",
+     "Between 25 to 30 mph (40 to 65 km/h)"
+    ],
+    "a": 0
+   },
+   {
+    "n": 12,
+    "p": "According to NFPA 1900, an individual discharge gauge must sit within _____ of the discharge control.",
+    "pg": "288",
+    "o": [
+     "3 inches (75 mm)",
+     "6 inches (150 mm)",
+     "12 inches (305 mm)",
+     "15 inches (380 mm)"
+    ],
+    "a": 1
+   },
+   {
+    "n": 13,
+    "p": "How does automatic pressure regulation help ensure the safety and effectiveness of personnel operating hoselines?",
+    "pg": "296",
+    "o": [
+     "Increases the volume of water",
+     "Decreases the volume of water",
+     "Increases the pressure in the hoselines",
+     "Compensates for sudden changes in flow"
+    ],
+    "a": 3
+   },
+   {
+    "n": 14,
+    "p": "What is the primary requirement for initiating a successful drafting operation?",
+    "pg": "299",
+    "o": [
+     "Creating a higher pressure in the intake hose",
+     "Creating a lower pressure in the pump and intake hose",
+     "Equalizing the pressure in the pump and intake hose with the atmosphere",
+     "Preventing atmospheric pressure from entering the pump and intake hose"
+    ],
+    "a": 1
+   },
+   {
+    "n": 15,
+    "p": "What is the responsibility of a D/O concerning the devices that assist with extreme hot and cold conditions?",
+    "pg": "303",
+    "o": [
+     "Delegate the operation of the devices to other personnel",
+     "Request additional equipment to handle temperature extremes",
+     "Ignore the devices and rely on standard firefighting procedures",
+     "Know how to operate the devices and recognize the appropriate time to use them"
+    ],
+    "a": 3
+   },
+   {
+    "n": 16,
+    "p": "The throttle in an electronic pressure governor should be checked in the _____ modes.",
+    "pg": "308",
+    "o": [
+     "rpm and intake",
+     "pressure and rpm",
+     "rpm and discharge",
+     "pressure and discharge"
+    ],
+    "a": 1
+   }
+  ]
+ },
+ {
+  "ch": 9,
+  "title": "Pump Operations from Pressurized Sources",
+  "qs": [
+   {
+    "n": 1,
+    "p": "What does NFPA 1900 require pumpers to have in regard to the parking brake?",
+    "pg": "319",
+    "o": [
+     "A warning light that indicates if the parking brake is not set",
+     "An override switch that allows the pump to engage without the brake being set",
+     "A feature that prevents the pump from throttling up if the parking brake is not set",
+     "A feature that automatically engages the emergency brake when the pump is activated"
+    ],
+    "a": 2
+   },
+   {
+    "n": 2,
+    "p": "What must happen before the D/O can operate the fire pump?",
+    "pg": "320",
+    "o": [
+     "The hoses must be connected",
+     "The tank-fill valve must be open",
+     "The water supply must be turned on",
+     "The apparatus wheels must be chocked"
+    ],
+    "a": 3
+   },
+   {
+    "n": 3,
+    "p": "Why must the D/O transition to an external water supply quickly and efficiently?",
+    "pg": "323",
+    "o": [
+     "To prevent wasting water",
+     "To prevent excessive noise levels",
+     "To avoid running out of fuel for the apparatus",
+     "To ensure a continuous water supply for the fire attack"
+    ],
+    "a": 3
+   },
+   {
+    "n": 4,
+    "p": "What are the two basic pressurized water supply sources that the D/O will encounter?",
+    "pg": "324",
+    "o": [
+     "A water tower and a well",
+     "A swimming pool and a lake",
+     "A garden hose and a sprinkler system",
+     "A fire hydrant and a relay supply from another pumper"
+    ],
+    "a": 3
+   },
+   {
+    "n": 5,
+    "p": "Typically, hydrants located on _____ mains have more sediment and deterioration, reducing their capacity.",
+    "pg": "326",
+    "o": [
+     "dead-end",
+     "dual direction",
+     "dedicated system",
+     "private service water"
+    ],
+    "a": 0
+   },
+   {
+    "n": 6,
+    "p": "What is the recommended frequency of fire hydrant inspection and operation according to NFPA standards?",
+    "pg": "331",
+    "o": [
+     "Annually",
+     "Quarterly",
+     "Semi-annual",
+     "5 years"
+    ],
+    "a": 0
+   },
+   {
+    "n": 7,
+    "p": "What type of weather conditions require additional precautions when operating dry-barrel hydrants?",
+    "pg": "331",
+    "o": [
+     "Rainy weather",
+     "Sunny weather",
+     "Windy weather",
+     "Subfreezing weather"
+    ],
+    "a": 3
+   },
+   {
+    "n": 8,
+    "p": "What is a forward hose lay?",
+    "pg": "333",
+    "o": [
+     "A method for extinguishing a fire",
+     "A way for firefighters to get to the fire",
+     "A type of hose used for supplying water to a pumper",
+     "A common way for a pumper to draw water from a hydrant"
+    ],
+    "a": 3
+   },
+   {
+    "n": 9,
+    "p": "What is a reverse hose lay?",
+    "pg": "334",
+    "o": [
+     "A way to extinguish fires using foam",
+     "A method for fighting fires from the air",
+     "A way to evacuate firefighters from a burning building",
+     "A method for laying hose from the fire to the water source"
+    ],
+    "a": 3
+   },
+   {
+    "n": 10,
+    "p": "The first-digit method is used for:",
+    "pg": "338",
+    "o": [
+     "adding more lines to a water supply.",
+     "measuring water pressure in metric units.",
+     "calculating available water using psi and gpm.",
+     "determining the type of flow needed for a fire."
+    ],
+    "a": 2
+   },
+   {
+    "n": 11,
+    "p": "What information does the D/O need to know before using the squaring-the-lines method?",
+    "pg": "339",
+    "o": [
+     "The capacity of the water tank on the pumper",
+     "The usual dynamic pressure of the water system",
+     "The number of pumps required to supply water to a fire",
+     "The static pressure of the water system before opening the pump discharges"
+    ],
+    "a": 3
+   },
+   {
+    "n": 12,
+    "p": "What is the squaring-the-lines method used for?",
+    "pg": "339",
+    "o": [
+     "Measuring the static pressure of a water system",
+     "Calculating the flow rate of water in a fire hydrant",
+     "Estimating the additional water available in a water system",
+     "Determining the volume of water initially flowed by a pumper"
+    ],
+    "a": 2
+   },
+   {
+    "n": 13,
+    "p": "Why should the D/O make changes in flow slowly and smoothly?",
+    "pg": "340",
+    "o": [
+     "To conserve water",
+     "To avoid water hammer",
+     "To increase water pressure",
+     "To make the water flow faster"
+    ],
+    "a": 1
+   },
+   {
+    "n": 14,
+    "p": "What is the potential consequence of water hammer?",
+    "pg": "340",
+    "o": [
+     "A loss of water supply",
+     "A steady water pressure",
+     "A decrease in water pressure",
+     "Damage to hydrants and other equipment"
+    ],
+    "a": 3
+   }
+  ]
+ },
+ {
+  "ch": 10,
+  "title": "Pump Operations from Static Water Supply",
+  "qs": [
+   {
+    "n": 1,
+    "p": "What is the main complication of using a static source for fire fighting?",
+    "pg": "359",
+    "o": [
+     "Not as reliable as municipal systems",
+     "Contaminated with bacteria or other pollutants",
+     "In remote areas, making it difficult for apparatus access",
+     "Static sources are often not as clean as municipal systems"
+    ],
+    "a": 2
+   },
+   {
+    "n": 2,
+    "p": "The greatest height to which any amount of water may be raised through an intake hose to the pump, is known as _____ lift.",
+    "pg": "361",
+    "o": [
+     "static",
+     "maximum",
+     "theoretical",
+     "dependable"
+    ],
+    "a": 1
+   },
+   {
+    "n": 3,
+    "p": "When evaluating a potential water supply source, first determine its:",
+    "pg": "364",
+    "o": [
+     "water potability.",
+     "water temperature.",
+     "available pump pressure.",
+     "adequacy and accessibility."
+    ],
+    "a": 3
+   },
+   {
+    "n": 4,
+    "p": "What is the safest and most efficient way for fire department vehicles to arrive, stage, fill, and depart from a drafting site?",
+    "pg": "366",
+    "o": [
+     "By backing in",
+     "In a straight line",
+     "In a circular route",
+     "Front-to-front with another pumper"
+    ],
+    "a": 2
+   },
+   {
+    "n": 5,
+    "p": "What is the minimum depth of water required for drafting operations using a barrel-type strainer?",
+    "pg": "366",
+    "o": [
+     "1 foot (300 mm)",
+     "2 feet (600 mm)",
+     "3 feet (900 mm)",
+     "4 feet (1 200 mm)"
+    ],
+    "a": 1
+   },
+   {
+    "n": 6,
+    "p": "If the D/O cannot establish an adequate draft due to clogging at the strainer, _____ with tank water may dislodge the debris:",
+    "pg": "367",
+    "o": [
+     "compressing",
+     "back flushing",
+     "a forced forward flow",
+     "change in tempurature"
+    ],
+    "a": 1
+   },
+   {
+    "n": 7,
+    "p": "What is the typical range of capacity for cisterns dedicated for fire protection?",
+    "pg": "369",
+    "o": [
+     "10,000 to 100,000 gallons (40 000 to 400 000 L)",
+     "50,000 to 150,000 gallons (200 000 to 600 000 L)",
+     "100,000 to 200,000 gallons (400 000 to 800 000 L)",
+     "200,000 to 300,000 gallons (800 000 to 1 200 000 L)"
+    ],
+    "a": 0
+   },
+   {
+    "n": 8,
+    "p": "Access to some pools may be difficult due to the lack of an acceptable safe driving surface, fences, _____, and utility vaults.",
+    "pg": "370",
+    "o": [
+     "debris",
+     "chlorined water",
+     "water temperature",
+     "undersurface drainage"
+    ],
+    "a": 3
+   },
+   {
+    "n": 9,
+    "p": "What type of system may flow in excess of 1,000 gpm (4 000 L/min) and may function as a water source for fire protection?",
+    "pg": "372",
+    "o": [
+     "Manmade cisterns",
+     "Portable water tanks",
+     "Agricultural irrigation",
+     "Public swimming pools"
+    ],
+    "a": 2
+   },
+   {
+    "n": 10,
+    "p": "To increase the flow of a pump during drafting operations, use a larger diameter intake hose, add an additional intake hose, or use:",
+    "pg": "373",
+    "o": [
+     "both suction intakes.",
+     "reducing the intake pressure.",
+     "a smaller diameter output hose.",
+     "decreasing the length of the hose."
+    ],
+    "a": 0
+   },
+   {
+    "n": 11,
+    "p": "What is cavitation during drafting operations?",
+    "pg": "373",
+    "o": [
+     "Water availability is not accessible",
+     "Water boiling at far above atmospheric pressure",
+     "Water discharging slower than it enters the pump",
+     "Water being discharged faster than it comes into the pump"
+    ],
+    "a": 3
+   },
+   {
+    "n": 12,
+    "p": "What makes a small pond a potentially viable water source?",
+    "pg": "375",
+    "o": [
+     "Less friction loss",
+     "High flow rate of water",
+     "Rapid replenishment rate",
+     "Availability of master steams"
+    ],
+    "a": 2
+   },
+   {
+    "n": 13,
+    "p": "What is the recommended sequence for connecting the intake hose to the apparatus?",
+    "pg": "376",
+    "o": [
+     "Connect the hose and butterfly valve simultaneously",
+     "Remove the butterfly valve and then connect the hose",
+     "Put the strainer in the water first and then connect the hose",
+     "Connect the hose first and then place the strainer in the water"
+    ],
+    "a": 2
+   },
+   {
+    "n": 14,
+    "p": "When attempting to establish prime using tank water, the tank-to-pump valve should first be _____ to push air backward and out of the intake hose.",
+    "pg": "378",
+    "o": [
+     "open",
+     "closed",
+     "partially opened",
+     "isolated from the tank"
+    ],
+    "a": 0
+   },
+   {
+    "n": 15,
+    "p": "What is required when operating the pump from draft?",
+    "pg": "379",
+    "o": [
+     "Diligent monitoring of gauges",
+     "Continuous refilling of the tank",
+     "Activation of the auxiliary cooler",
+     "Assistance from another pumper"
+    ],
+    "a": 0
+   }
+  ]
+ },
+ {
+  "ch": 11,
+  "title": "Fireground Pump Operations",
+  "qs": [
+   {
+    "n": 1,
+    "p": "What is the second priority during fireground operations?",
+    "pg": "387",
+    "o": [
+     "Life safety",
+     "Incident stabilization",
+     "Property conservation",
+     "Environmental protection"
+    ],
+    "a": 1
+   },
+   {
+    "n": 2,
+    "p": "During fireground operations, the IC makes a _____ analysis to determine if lives can be saved without unnecessary risk to firefighters.",
+    "pg": "387",
+    "o": [
+     "risk-benefit",
+     "closed relay",
+     "transitional attack",
+     "an indirect procedural"
+    ],
+    "a": 0
+   },
+   {
+    "n": 3,
+    "p": "In a(an) _____ strategy, firefighters attack the fire directly and/or conduct a search.",
+    "pg": "388",
+    "o": [
+     "interior",
+     "exterior",
+     "offensive",
+     "defensive"
+    ],
+    "a": 2
+   },
+   {
+    "n": 4,
+    "p": "What are the two methods of fire attack in an offensive strategy?",
+    "pg": "388",
+    "o": [
+     "Interior and defensive attack",
+     "Exterior and defensive attack",
+     "Interior and transitional attack",
+     "Intrinsic and transitional attack"
+    ],
+    "a": 2
+   },
+   {
+    "n": 5,
+    "p": "What is the primary goal of a defensive strategy in firefighting?",
+    "pg": "388",
+    "o": [
+     "Control the spread of fire",
+     "To sacrifice adjacent buildings to save the burning structure",
+     "To enter the burning building for attack and search purposes",
+     "To confine the fire to the structure(s) involved by entering the building"
+    ],
+    "a": 0
+   },
+   {
+    "n": 6,
+    "p": "At a fire incident, hoseline and stream selections are:",
+    "pg": "389",
+    "o": [
+     "not necessary.",
+     "made after the fire attack is conducted.",
+     "made before the fire attack is conducted.",
+     "based upon the type of fire extinguisher used."
+    ],
+    "a": 2
+   },
+   {
+    "n": 7,
+    "p": "What is the purpose of directing the stream toward the ceiling during an indirect attack?",
+    "pg": "389",
+    "o": [
+     "To dry the room",
+     "To cool the room",
+     "To increase the fire's intensity",
+     "To redirect/remove smoke and steam"
+    ],
+    "a": 1
+   },
+   {
+    "n": 8,
+    "p": "What is the recommended pattern to use when performing a combination attack?",
+    "pg": "391",
+    "o": [
+     "U-shaped",
+     "W-shaped",
+     "X- or V-shaped",
+     "T, Z, or rotational"
+    ],
+    "a": 3
+   },
+   {
+    "n": 9,
+    "p": "What are the NFPA standards that D/Os should review for more information on sprinkler systems?",
+    "pg": "392",
+    "o": [
+     "NFPA 1072 and 1060",
+     "NFPA 1001 and 1006",
+     "NFPA 10, 10D, and 12F",
+     "NFPA 13, 13D, 13E, and 13R"
+    ],
+    "a": 3
+   },
+   {
+    "n": 10,
+    "p": "What should the D/O do while waiting for orders to charge the system?",
+    "pg": "393",
+    "o": [
+     "Disconnect the FDC",
+     "Disconnect the pump",
+     "Turn off the sprinkler system and the pump to avoid overheating",
+     "Engage the pump and circulate tank water to avoid overheating the pump"
+    ],
+    "a": 3
+   },
+   {
+    "n": 11,
+    "p": "Which NFPA standard provides information about standpipes?",
+    "pg": "394",
+    "o": [
+     "NFPA 14",
+     "NFPA 101",
+     "NFPA 13C",
+     "NFPA 1010"
+    ],
+    "a": 0
+   },
+   {
+    "n": 12,
+    "p": "What are the two types of standpipe systems?",
+    "pg": "395",
+    "o": [
+     "Wet and dry",
+     "Direct and indirect",
+     "Industrial and commercial",
+     "High-pressure and low-pressure"
+    ],
+    "a": 0
+   },
+   {
+    "n": 13,
+    "p": "Because complex calculations are not practical to compute under fireground conditions, fire departments should have a:",
+    "pg": "396",
+    "o": [
+     "hydraulic calculation model.",
+     "pressure-regulating control valve.",
+     "pressure-reducing and shut-off valve.",
+     "planned pump discharge pressure and proceedure."
+    ],
+    "a": 3
+   },
+   {
+    "n": 14,
+    "p": "D/Os should be aware that vandals might tamper with the valves in a dry standpipe systems, therefore they should check for:",
+    "pg": "397",
+    "o": [
+     "open valves.",
+     "missing tools.",
+     "missing doors.",
+     "open windows."
+    ],
+    "a": 0
+   },
+   {
+    "n": 15,
+    "p": "A pumper connected within the relay that receives water from the source pumper _____ the pressure and supplies water to the next apparatus.",
+    "pg": "400",
+    "o": [
+     "levels",
+     "restricts",
+     "increases",
+     "decreases"
+    ],
+    "a": 2
+   },
+   {
+    "n": 16,
+    "p": "What type of vehicle is equipped with a wide assortment of valves, manifolds, and other appliances to assist in relay pumping operations?",
+    "pg": "400",
+    "o": [
+     "Hose tenders",
+     "Aerial apparatus",
+     "Fire attack pumpers",
+     "Transporation apparatus"
+    ],
+    "a": 0
+   },
+   {
+    "n": 17,
+    "p": "What type of valves allow later-arriving pumpers to tie into the relay operation to boost pressure and volume without interrupting the water supply?",
+    "pg": "403",
+    "o": [
+     "In-line relay valve",
+     "Cut-off relay valve",
+     "Pump spacing valve",
+     "LDH discharge valve"
+    ],
+    "a": 0
+   },
+   {
+    "n": 18,
+    "p": "During LDH relay operations, a _____ may be used to break down the LDH into two or more hoselines that may then be connected to different pumpers.",
+    "pg": "403",
+    "o": [
+     "supply line pump",
+     "discharge manifold",
+     "master intake valve",
+     "pressure relief valve"
+    ],
+    "a": 1
+   },
+   {
+    "n": 19,
+    "p": "What is the maximum volume capacity of centrifugal pumps at draft?",
+    "pg": "404",
+    "o": [
+     "100 psi (700 kPa)",
+     "150 psi (1 050 kPa)",
+     "200 psi (1 400 (kPa)",
+     "250 psi (1 750 kPa)"
+    ],
+    "a": 1
+   },
+   {
+    "n": 20,
+    "p": "What affects elevation pressure during a relay pumping operation?",
+    "pg": "404",
+    "o": [
+     "Topography",
+     "Size of discharge manifold",
+     "Amount of water being moved",
+     "Distance to a static water source"
+    ],
+    "a": 0
+   },
+   {
+    "n": 21,
+    "p": "When relaying long distances, the hose lays between each pumper should be:",
+    "pg": "407",
+    "o": [
+     "equal as possible.",
+     "as close together as possible.",
+     "staged by increasing hose diameter.",
+     "staged by decreasing hose diameter."
+    ],
+    "a": 0
+   },
+   {
+    "n": 22,
+    "p": "Apparatus equipped with pressure governors should be set in the _____ when acting as the attack pumper.",
+    "pg": "408",
+    "o": [
+     "rpm mode",
+     "off possition",
+     "pressure mode",
+     "pressure-relief position"
+    ],
+    "a": 2
+   },
+   {
+    "n": 23,
+    "p": "What should the D/O of the attack pumper expect during relay pumping operations?",
+    "pg": "410",
+    "o": [
+     "No pressure variations",
+     "Small pressure variations",
+     "Large pressure variations",
+     "Wide, fluctuating intake pressures"
+    ],
+    "a": 1
+   },
+   {
+    "n": 24,
+    "p": "Working back to the source pumper, what should be done to prevent water hammer when ending a relay pumping operation?",
+    "pg": "410",
+    "o": [
+     "Leave all valves open",
+     "Slowly close all valves",
+     "Quickly close all valves",
+     "Shut off the pump before closing any valves"
+    ],
+    "a": 1
+   },
+   {
+    "n": 25,
+    "p": "What is the main advantage of using a tandem pumping operation?",
+    "pg": "411",
+    "o": [
+     "Requires fewer firefighters to operate",
+     "Reduces pressure and conserves water",
+     "Is more efficient than using a single pumper",
+     "Allows for higher pressures than a single engine can supply"
+    ],
+    "a": 3
+   },
+   {
+    "n": 26,
+    "p": "With dual pumping operations, one hydrant with a high flow rate _____ is used to supply two fire pumps.",
+    "pg": "413",
+    "o": [
+     "less than 500 gpm (2 000 L/min)",
+     "greater than 1,000 gpm (4 000 L/min)",
+     "between 250 and 500 gpm (1 000 and 2 000 L/min)",
+     "between 500 and 1,000 gpm (2 000 and 4 000 L/min)"
+    ],
+    "a": 1
+   }
+  ]
+ },
+ {
+  "ch": 12,
+  "title": "Water Shuttle Operations",
+  "qs": [
+   {
+    "n": 1,
+    "p": "What is the purpose of determining the fire flow needs for an incident in a water shuttle operation?",
+    "pg": "428",
+    "o": [
+     "To determine the number of victims",
+     "To identify the location of the fill site",
+     "To determine the type of water shuttle apparatus needed",
+     "To understand the requirements for an effective water supply apparatus"
+    ],
+    "a": 2
+   },
+   {
+    "n": 2,
+    "p": "What is the minimum water tank size required for a tender according to NFPA 1900?",
+    "pg": "428",
+    "o": [
+     "500 gallons",
+     "750 gallons",
+     "1,000 gallons",
+     "1,500 gallons"
+    ],
+    "a": 2
+   },
+   {
+    "n": 3,
+    "p": "What is the key to a successful water shuttle operation?",
+    "pg": "429",
+    "o": [
+     "Fast response time",
+     "High-pressure pumps",
+     "Operational efficiency",
+     "A large number of apparatus"
+    ],
+    "a": 2
+   },
+   {
+    "n": 4,
+    "p": "What determines the size of a water shuttle operation and its potential expansion?",
+    "pg": "429",
+    "o": [
+     "Local jurisdiction regulations",
+     "Availability of trained personnel",
+     "Distance and length of the operation",
+     "Response time to the incident location"
+    ],
+    "a": 2
+   },
+   {
+    "n": 5,
+    "p": "A preplanned route of travel and traffic flow for a jurisdiction or target hazard is called a(an):",
+    "pg": "430",
+    "o": [
+     "traffic plan.",
+     "shuttle circuit.",
+     "attack strategy.",
+     "shuttle operation."
+    ],
+    "a": 0
+   },
+   {
+    "n": 6,
+    "p": "Whenever possible, what weather conditions should be avoded during water shuttle operations?",
+    "pg": "432",
+    "o": [
+     "Extreme heat",
+     "Heavy rain and thunderstorms",
+     "Roads covered with ice and snow",
+     "High winds and moderate temperatures"
+    ],
+    "a": 2
+   },
+   {
+    "n": 7,
+    "p": "What is the purpose of the National Incident Management System - Incident Command System (NIMS-ICS) throughout the fire service?",
+    "pg": "434",
+    "o": [
+     "To establish an accurate reporting for the NFIRS data system",
+     "Sets standards for water shuttle operations establishestablish",
+     "The advancement of the Water Supply Group Supervisory System",
+     "To create common terminologies and a unified incident response structure"
+    ],
+    "a": 3
+   },
+   {
+    "n": 8,
+    "p": "Who is responsible for appointing individuals responsible for the fill and dump sites in the water supply plan?",
+    "pg": "435",
+    "o": [
+     "Incident Safety Officer",
+     "Water Supply Branch Director",
+     "Water Supply Group Supervisor",
+     "D/O in charge of the tandem pumper"
+    ],
+    "a": 2
+   },
+   {
+    "n": 9,
+    "p": "What role does a large tender serve when positioned immediately adjacent to the attack pumper?",
+    "pg": "438",
+    "o": [
+     "Twin tank",
+     "Fill site coordinator",
+     "Nurse tender function",
+     "Supply line connection"
+    ],
+    "a": 2
+   },
+   {
+    "n": 10,
+    "p": "Why is pumping through a discharge and hoseline generally less efficient than using a dump valve?",
+    "pg": "439",
+    "o": [
+     "Limited flow due to tank-to-pump line capacity",
+     "Longer time spent at the dump site for the D/O",
+     "Lack of control over the hoseline discharge pressure",
+     "Inability to engage and operate the pump effectively"
+    ],
+    "a": 0
+   },
+   {
+    "n": 11,
+    "p": "What flow rate does NFPA 1900 require tenders to have for dumping at a minimum average rate?",
+    "pg": "439",
+    "o": [
+     "500 gpm (2 000 L/min)",
+     "750 gpm (3 000 L/min)",
+     "1,000 gpm (4 000 L/min)",
+     "1,250 gpm (5 000 L/min)"
+    ],
+    "a": 2
+   },
+   {
+    "n": 12,
+    "p": "During water dumping, after the first tender returns to the fill site, what should the next tender do when there is space in the portable tank during water dumping?",
+    "pg": "440",
+    "o": [
+     "Finish unloading before proceeding",
+     "Return to the fill site for another load",
+     "Circulate the water back into the tank",
+     "Position itself and begin dumping its water"
+    ],
+    "a": 3
+   },
+   {
+    "n": 13,
+    "p": "What is the primary goal when positioning the fill site pumper at a water source?",
+    "pg": "442",
+    "o": [
+     "Maximize the flow available for tender supply",
+     "Dress the hydrant according to departmental SOPs",
+     "Ensure a clear view of the tender and water source",
+     "Connect all available hydrant discharges to pump intakes"
+    ],
+    "a": 2
+   },
+   {
+    "n": 14,
+    "p": "What is the recommended approach for positioning the fill site pumper at a static water supply?",
+    "pg": "442",
+    "o": [
+     "Opt for a location that provides the most scenic view",
+     "Keep it as close as possible to the roadway for quick access",
+     "Place it far away from the water source to avoid interference",
+     "Seek a position that requires a minimum of lift to maximize the flow available for tender supply"
+    ],
+    "a": 3
+   },
+   {
+    "n": 15,
+    "p": "What percentage of their load do most tenders dump before leaving the dump site?",
+    "pg": "445",
+    "o": [
+     "50%",
+     "75%",
+     "90%",
+     "100%"
+    ],
+    "a": 2
+   },
+   {
+    "n": 16,
+    "p": "What are the two primary methods used to calculate flow rates for specific tenders?",
+    "pg": "445 - 446",
+    "o": [
+     "Field tests and ISO formulas",
+     "Lab simulations and computer modeling",
+     "Theoretical calculations and historical data",
+     "Experimental trials and mathematical equations"
+    ],
+    "a": 0
+   },
+   {
+    "n": 17,
+    "p": "Why is it recommended to visually inspect the area under and around the mobile water supply apparatus during checks?",
+    "pg": "449",
+    "o": [
+     "To practice efficient parking and positioning skills",
+     "To ensure proper tire pressure for smooth operation",
+     "To determine the level of wear on the brake pads and rotor",
+     "To identify potential leaks from the water tank and other agents"
+    ],
+    "a": 3
+   }
+  ]
+ },
+ {
+  "ch": 13,
+  "title": "Foam Types and Systems",
+  "qs": [
+   {
+    "n": 1,
+    "p": "Which chemical compounds are central to the ability of foam to create heat-resistant foam blankets and rapidly cool fires?",
+    "pg": "465",
+    "o": [
+     "Fluorosurfactants",
+     "Organic compounds",
+     "Naturally occurring compounds",
+     "Hydrocarbon-based surfactants"
+    ],
+    "a": 0
+   },
+   {
+    "n": 2,
+    "p": "What type of foam does NOT biodegrade and builds up in animals?",
+    "pg": "466",
+    "o": [
+     "Class B foam",
+     "Class A foam",
+     "Natural foam",
+     "PFC-containing foam"
+    ],
+    "a": 3
+   },
+   {
+    "n": 3,
+    "p": "Class A foams are hydrocarbon-based surfactants, whereas durable (gelling) agents are:",
+    "pg": "467",
+    "o": [
+     "encapsulators.",
+     "biodegradable.",
+     "water-absorbent polymers.",
+     "non-perfluorooctanoic acid."
+    ],
+    "a": 2
+   },
+   {
+    "n": 4,
+    "p": "How long can properly stored Class A foam concentrate last?",
+    "pg": "469",
+    "o": [
+     "Up to 5 years",
+     "Up to 10 years",
+     "Up to 15 years",
+     "Up to 20 years"
+    ],
+    "a": 3
+   },
+   {
+    "n": 5,
+    "p": "For what type of foam is commonly used at a ratio of 20:1 to 200:1?",
+    "pg": "469",
+    "o": [
+     "No-expansion foam",
+     "Low-expansion foam",
+     "High-expansion foam",
+     "Medium-expansion foam"
+    ],
+    "a": 3
+   },
+   {
+    "n": 6,
+    "p": "What is the typical ratio range for high-expansion foam?",
+    "pg": "469",
+    "o": [
+     "10:1 to 100:1",
+     "50:1 to 500:1",
+     "200:1 to 1,000:1",
+     "1,000:1 to 10,000:1"
+    ],
+    "a": 2
+   },
+   {
+    "n": 7,
+    "p": "Which of the following Class A foam types is optimal for areas that require maximum penetration?",
+    "pg": "470",
+    "o": [
+     "Dry foam",
+     "Wet foam",
+     "High-expansion foam",
+     "Medium-expansion foam"
+    ],
+    "a": 1
+   },
+   {
+    "n": 8,
+    "p": "Which of the following Class A foam types is ideally suited for vertical surfaces?",
+    "pg": "470",
+    "o": [
+     "Dry foam",
+     "Wet foam",
+     "High-expansion foam",
+     "Medium-expansion foam"
+    ],
+    "a": 0
+   },
+   {
+    "n": 9,
+    "p": "What is the approximate shelf life for synthetic Class B foams?",
+    "pg": "470",
+    "o": [
+     "5 to 10 years",
+     "10 to 15 years",
+     "15 to 20 years",
+     "20 to 25 years"
+    ],
+    "a": 3
+   },
+   {
+    "n": 10,
+    "p": "The Alcohol Type Concentrate (ATC) or Alcohol Resistant (AR) designation is given to a concentrate used for making foam to fight _____ fires.",
+    "pg": "471",
+    "o": [
+     "gaseous fuel",
+     "Class A fuels",
+     "hydrocarbon fuel",
+     "polar solvent fuel"
+    ],
+    "a": 3
+   },
+   {
+    "n": 11,
+    "p": "Which of the following factors is most important to consider when determining the application rate for a foam?",
+    "pg": "471",
+    "o": [
+     "Wind speed",
+     "Size of the fire",
+     "Foam temperature",
+     "Type of fuel involved"
+    ],
+    "a": 3
+   },
+   {
+    "n": 12,
+    "p": "Which of the following statements about foam concentrate tanks on fire apparatus is FALSE?",
+    "pg": "474",
+    "o": [
+     "They can eliminate the need for pails or barrels to supply a foam eductor",
+     "Some foam tenders and industrial foam pumpers may only have a tank for foam concentrate",
+     "Municipal fire pumpers typically have foam concentrate tanks ranging from 20 to 200 gallons (80 to 800 L)",
+     "There is a single type of foam concentrate tank and it is always located on the driver's side of the apparatus"
+    ],
+    "a": 3
+   },
+   {
+    "n": 13,
+    "p": "Which of the following principles is NOT used to achieve foam proportioning?",
+    "pg": "474",
+    "o": [
+     "Venturi effect",
+     "Pressurized proportioning device",
+     "Mixing water and foam concentrate in a tank",
+     "Introducing air into the foam solution at the nozzle"
+    ],
+    "a": 3
+   },
+   {
+    "n": 14,
+    "p": "Which principle is utilized by both in-line foam eductors and self-educting foam nozzles for foam proportioning?",
+    "pg": "475",
+    "o": [
+     "Mixing",
+     "Venturi",
+     "Dilution",
+     "Pressurized"
+    ],
+    "a": 1
+   },
+   {
+    "n": 15,
+    "p": "What powers variable-flow variable-rate direct injection proportioners in most cases?",
+    "pg": "476",
+    "o": [
+     "Apparatus electrical system",
+     "Apparatus hydraulic system",
+     "The foam concentrate pump",
+     "Combination of electric and hydraulic power"
+    ],
+    "a": 0
+   },
+   {
+    "n": 16,
+    "p": "What drives the variable speed mechanism in a variable-flow demand-type balanced pressure proportioner system?",
+    "pg": "477",
+    "o": [
+     "Water line",
+     "Jockey pump",
+     "Electric power",
+     "Foam concentrate pump"
+    ],
+    "a": 2
+   },
+   {
+    "n": 17,
+    "p": "Generally, the D/O will use batch mixing with which type of foam concentrates?",
+    "pg": "478",
+    "o": [
+     "Class A foam concentrates only",
+     "Alcohol-resistant AFFF concentrates only",
+     "Alcohol-resistant AFFF concentrates and Class B foam",
+     "Class A foam concentrates and regular AFFF concentrates"
+    ],
+    "a": 3
+   },
+   {
+    "n": 18,
+    "p": "What is the main function of an air-aspirating foam nozzle?",
+    "pg": "480",
+    "o": [
+     "Create a fine mist of foam",
+     "Introduce air into the foam solution",
+     "Increase the reach of the foam stream",
+     "Reduce the amount of foam concentrate needed"
+    ],
+    "a": 1
+   },
+   {
+    "n": 19,
+    "p": "What is one potential consequence of insufficient flow when using a in-line foam eductor?",
+    "pg": "482",
+    "o": [
+     "Excessive elevation pressure",
+     "Backflow check valve closure",
+     "Loss of suction on the Venturi",
+     "Chemically incompatible foam concentrates"
+    ],
+    "a": 2
+   },
+   {
+    "n": 20,
+    "p": "What should be done to flush and drain foam injection equipment on an apparatus?",
+    "pg": "483",
+    "o": [
+     "Bleed pressure from the manifold",
+     "Remove and reinstall the filter screen",
+     "Turn off the foam pump and flow clean water",
+     "Clean residual concentrate via the pickup tube"
+    ],
+    "a": 2
+   }
+  ]
+ },
+ {
+  "ch": 14,
+  "title": "Pumping Apparatus Testing",
+  "qs": [
+   {
+    "n": 1,
+    "p": "What ensures the purchaser that the pump and the powertrain of a pumping apparatus will perform as specified under extreme use?",
+    "pg": "493",
+    "o": [
+     "Preservice testing",
+     "Fire pump certification",
+     "NFPA bid specifications",
+     "ASTM International criteria"
+    ],
+    "a": 0
+   },
+   {
+    "n": 2,
+    "p": "According to NFPA 1900, the pump certification test label should be affixed:",
+    "pg": "495",
+    "o": [
+     "to the pump panel.",
+     "on the rear bumper.",
+     "on the driver's side door.",
+     "inside the apparatus cab."
+    ],
+    "a": 0
+   },
+   {
+    "n": 3,
+    "p": "Which of the following is NOT included on the test label provided on the pump panel?",
+    "pg": "495",
+    "o": [
+     "Governed engine speed",
+     "Parallel/series pump position",
+     "Rated pressures and discharges",
+     "Engine manufacturer's contact information"
+    ],
+    "a": 3
+   },
+   {
+    "n": 4,
+    "p": "Why do many jurisdictions prefer a static water source for pump performance testing?",
+    "pg": "496",
+    "o": [
+     "Aligns with NFPA 1910 regulations",
+     "Provides a more abundant water supply",
+     "Reduces the risk of water contamination",
+     "Allows for easier evaluation of pump performance"
+    ],
+    "a": 3
+   },
+   {
+    "n": 5,
+    "p": "What is net pump discharge pressure (NPDP)?",
+    "pg": "498",
+    "o": [
+     "The pressure required to overcome friction loss",
+     "The pressure displayed on the discharge gauge",
+     "The difference between intake and discharge pressure",
+     "The pressure at which the pump operates during testing"
+    ],
+    "a": 2
+   },
+   {
+    "n": 6,
+    "p": "According to NFPA 1910, how often should gauges used for service testing be calibrated?",
+    "pg": "498",
+    "o": [
+     "Monthly",
+     "Quarterly",
+     "Semi-annually",
+     "Annually"
+    ],
+    "a": 3
+   },
+   {
+    "n": 7,
+    "p": "Where should the pitot gauge be clamped into position during the preparation for the performance test?",
+    "pg": "499",
+    "o": [
+     "Nozzle",
+     "Intake hose",
+     "Pump panel",
+     "Discharge valve"
+    ],
+    "a": 0
+   },
+   {
+    "n": 8,
+    "p": "When using a flowmeter during pump testing, the D/O must ensure:",
+    "pg": "499",
+    "o": [
+     "proper conversions of psi to rpm.",
+     "the pump maintains steady pressure.",
+     "the engine throttle is set to operate quickly.",
+     "proper calibration to manufacturer's specifications."
+    ],
+    "a": 3
+   },
+   {
+    "n": 9,
+    "p": "What condition must be met for the throttle to advance during the engine speed control test?",
+    "pg": "500",
+    "o": [
+     "Pump must be engaged",
+     "Parking brake must be off",
+     "Parking brake must be engaged",
+     "Indicator lights must be functional"
+    ],
+    "a": 2
+   },
+   {
+    "n": 10,
+    "p": "According to NFPA 1910, what is the maximum allowable time for fire pumps of 1,250 gpm (5 000 L/min) capacity to achieve prime?",
+    "pg": "501",
+    "o": [
+     "15 seconds or less",
+     "30 seconds or less",
+     "45 seconds or less",
+     "60 seconds or less"
+    ],
+    "a": 1
+   },
+   {
+    "n": 11,
+    "p": "What is the purpose of the pressure control test for fire pumps?",
+    "pg": "502",
+    "o": [
+     "Measure the water flow rate from the nozzles",
+     "Determine the maximum achievable pump pressure",
+     "Evaluate the performance of the overload protection system",
+     "Ensure the pressure control devices maintain safe levels of pressure on the pump"
+    ],
+    "a": 3
+   },
+   {
+    "n": 12,
+    "p": "What is the minimum required flow rate from the onboard tank for pumpers with a capacity of less than 500 gallons (2 000 L)?",
+    "pg": "503",
+    "o": [
+     "100 gpm (400 L/min)",
+     "250 gpm (1 000 L/min)",
+     "400 gpm (1 600 L/min)",
+     "500 gpm (2 000 L/min)"
+    ],
+    "a": 1
+   },
+   {
+    "n": 13,
+    "p": "What is the first step in testing the internal intake pressure relief valve?",
+    "pg": "503",
+    "o": [
+     "Recording the pressure at which the relief valve opens",
+     "Comparing the recorded pressure with past test results",
+     "Connecting a discharge hoseline from a second pumper",
+     "Increasing the discharge pressure from the supply pumper"
+    ],
+    "a": 2
+   },
+   {
+    "n": 14,
+    "p": "After completion of in-service testing, if any apparatus achieves results less than _____ of its original capabilities, the D/O should follow all AHJ protocols and procedures for reporting the failure.",
+    "pg": "503",
+    "o": [
+     "75%",
+     "85%",
+     "90%",
+     "95%"
+    ],
+    "a": 2
+   }
+  ]
+ },
+ {
+  "ch": 15,
+  "title": "Introduction to Aerial Fire Apparatus",
+  "qs": [
+   {
+    "n": 1,
+    "p": "NFPA 1900 groups aerial devices into three main categories: aerial ladders, elevating platforms, and:",
+    "pg": "517",
+    "o": [
+     "tillers.",
+     "tenders.",
+     "turntables.",
+     "water towers."
+    ],
+    "a": 3
+   },
+   {
+    "n": 2,
+    "p": "Which materials are commonly used for aerial ladders?",
+    "pg": "518",
+    "o": [
+     "Brass and copper",
+     "Fiberglass and titanium",
+     "Stainless steel and carbon fiber",
+     "Heat-treated steel and aluminum alloys"
+    ],
+    "a": 3
+   },
+   {
+    "n": 3,
+    "p": "What is the primary difference between aerial ladder platforms and telescoping aerial platforms?",
+    "pg": "525",
+    "o": [
+     "Aerial platforms include a small emergency escape ladder",
+     "Telescoping aerial platforms are not intended for climbing",
+     "Aerial ladder platforms are constructed using box-beam construction",
+     "Telescoping aerial platforms have larger sizes than aerial ladder platforms"
+    ],
+    "a": 1
+   },
+   {
+    "n": 4,
+    "p": "What is the primary difference between articulating platform apparatus and telescoping aerial platform apparatus?",
+    "pg": "526",
+    "o": [
+     "Articulating platforms fold and unfold like an elbow",
+     "Telescoping platforms have a hinge connecting the boom sections",
+     "Articulating platforms have a greater height range than telescoping platforms",
+     "Telescoping platforms enable access to areas not reachable with articulating platforms"
+    ],
+    "a": 0
+   },
+   {
+    "n": 5,
+    "p": "According to NFPA 1900, what criteria must an apparatus meet to qualify as a quint?",
+    "pg": "527",
+    "o": [
+     "It must have five features specified by NFPA 1900",
+     "It must have a maneuverable and positionable aerial device",
+     "It must meet specific maneuvering and positioning requirements",
+     "It must have at least three major features or functions specified by NFPA 1900"
+    ],
+    "a": 0
+   },
+   {
+    "n": 6,
+    "p": "Where is the power take-off (PTO) typically located on aerial apparatus?",
+    "pg": "529",
+    "o": [
+     "In the vehicle's cab",
+     "On the transmission",
+     "On the hydraulic pump",
+     "On each piston/actuator"
+    ],
+    "a": 1
+   },
+   {
+    "n": 7,
+    "p": "What is the role of hydraulic fluid in the aerial apparatus system?",
+    "pg": "529",
+    "o": [
+     "It regulates the pressure of the hydraulic system",
+     "It helps maintain proper fluid levels in the system",
+     "It lubricates the components of the aerial apparatus",
+     "It allows force to be transmitted over large distances with minimal power loss"
+    ],
+    "a": 3
+   },
+   {
+    "n": 8,
+    "p": "What type of activation is commonly used for new aerial devices and stabilizers?",
+    "pg": "532",
+    "o": [
+     "Digital",
+     "Manual",
+     "Electrical",
+     "Hydraulic"
+    ],
+    "a": 3
+   },
+   {
+    "n": 9,
+    "p": "What is the primary function of hoisting cylinders in an aerial apparatus?",
+    "pg": "535",
+    "o": [
+     "Elevate and lower the aerial device",
+     "Control the hydraulic system pressure",
+     "Support the weight of the aerial device",
+     "Provide stability and balance to the apparatus"
+    ],
+    "a": 0
+   },
+   {
+    "n": 10,
+    "p": "What is the purpose of a grade level indicator in an aerial apparatus?",
+    "pg": "539",
+    "o": [
+     "Monitor the hydraulic fluid levels in the system",
+     "Measure the weight distribution of the aerial device",
+     "Indicate the safety of the side-to-side angle of the apparatus after stabilization",
+     "Indicates the safety of the longitudinal angle of the apparatus after stabilization"
+    ],
+    "a": 3
+   },
+   {
+    "n": 11,
+    "p": "What are interlocks in relation to aerial devices?",
+    "pg": "542",
+    "o": [
+     "Proximity switches that detect nearby objects",
+     "Electromagnetic sensors that monitor the aerial apparatus",
+     "Mechanical limit switches used to activate the aerial device",
+     "Safety devices and systems that control certain movements or functions"
+    ],
+    "a": 3
+   },
+   {
+    "n": 12,
+    "p": "Which statement about aerial apparatus hydraulic system overrides is accurate?",
+    "pg": "543",
+    "o": [
+     "Use of overrides should always be authorized by the D/O",
+     "Stabilizer override allows stabilizers to move if the aerial device is in a stowed position",
+     "The aerial override allows the aerial device to rise from its bed if that stabilizers are fully deployed",
+     "They allow a malfunctioning device to be stowed so the apparatus can be moved to a repair facility"
+    ],
+    "a": 3
+   },
+   {
+    "n": 13,
+    "p": "How is the telescoping waterway system designed in ladders shorter than 110 feet (34 m)?",
+    "pg": "545",
+    "o": [
+     "Water system ends before reaching the tip",
+     "Piping is made of aluminum or other metal",
+     "Piping extends directly to the tip of the fly section",
+     "Piping consists of three or four sections of increasing diameter"
+    ],
+    "a": 2
+   },
+   {
+    "n": 14,
+    "p": "How do firefighters connect to the breathing air supply in the aerial device?",
+    "pg": "548",
+    "o": [
+     "Connecting a supply hose to the SCBA's air outlet fitting",
+     "Using a separate breathing air mask provided by the aerial device",
+     "Directly connecting their SCBA to the air outlet fitting on the device",
+     "Connecting their SCBA facepiece to the apparatus breathing air supply"
+    ],
+    "a": 3
+   },
+   {
+    "n": 15,
+    "p": "What is one advantage of vehicle-mounted generators compared to portable units?",
+    "pg": "550",
+    "o": [
+     "They are more fuel-efficient",
+     "Easier to transport and maneuver",
+     "Have lower maintenance requirements",
+     "Provide a larger capacity for power generation"
+    ],
+    "a": 3
+   },
+   {
+    "n": 16,
+    "p": "Junction boxes on an apparatus typically contain receptacles configured for _____ volt operation.",
+    "pg": "552",
+    "o": [
+     "110 and 220",
+     "120 and 240",
+     "220 and 440",
+     "240 and 440"
+    ],
+    "a": 0
+   },
+   {
+    "n": 17,
+    "p": "How many ladder belts does NFPA 1900 require an aerial apparatus to be equipped with?",
+    "pg": "554",
+    "o": [
+     "Two",
+     "Three",
+     "Four",
+     "Five"
+    ],
+    "a": 2
+   },
+   {
+    "n": 18,
+    "p": "Exhaust fans (smoke ejectors) and positive-pressure blowers are two common types of equipment used for:",
+    "pg": "556",
+    "o": [
+     "overhaul",
+     "detection.",
+     "ventilation.",
+     "fire suppression"
+    ],
+    "a": 2
+   }
+  ]
+ },
+ {
+  "ch": 16,
+  "title": "Positioning Aerial Apparatus",
+  "qs": [
+   {
+    "n": 1,
+    "p": "Standard Operating Procedures (SOPs) help establish orderly aerial apparatus placement by:",
+    "pg": "563",
+    "o": [
+     "prioritizing building age and construction in considerations of preferred duties and assignments.",
+     "identifying target hazards and giving special consideration to apparatus access to high hazard areas.",
+     "determining a location that will not require the aerial apparatus to be repositioned in a defensive operation.",
+     "pre-establishing preferred duties, assignments, and related positioning considerations for initial and later-arriving apparatus."
+    ],
+    "a": 3
+   },
+   {
+    "n": 2,
+    "p": "What can assist in determining assignments and optimal positions for apparatus during fire incidents?",
+    "pg": "563",
+    "o": [
+     "Initial size-up",
+     "SOP development",
+     "Preincident planning",
+     "Target hazard considerations"
+    ],
+    "a": 0
+   },
+   {
+    "n": 3,
+    "p": "What is the positioning procedure for two aerials responding to a given location?",
+    "pg": "564",
+    "o": [
+     "The second aerial stages one block away and the first goes to the rear or side",
+     "The first aerial stages one block away and the second goes to the rear or side",
+     "The first aerial takes the front of the building and the second goes to the rear or side",
+     "The second aerial takes the front of the building and the first goes to the rear or side"
+    ],
+    "a": 2
+   },
+   {
+    "n": 4,
+    "p": "How is a single apparatus likely to position itself when responding to a given location?",
+    "pg": "564",
+    "o": [
+     "Stages one block away",
+     "Based on building access",
+     "Takes the rear or side of the building",
+     "Centered in front of the involved portion of the building"
+    ],
+    "a": 3
+   },
+   {
+    "n": 5,
+    "p": "What can long extensions at low angles potentially do to an aerial device?",
+    "pg": "564",
+    "o": [
+     "Improve climbing angle",
+     "Enhance extension capabilities",
+     "Increase load-carrying capacity",
+     "Reduce its load-carrying capacity"
+    ],
+    "a": 3
+   },
+   {
+    "n": 6,
+    "p": "How can D/Os gather information about structures and target hazards for aerial operations?",
+    "pg": "565",
+    "o": [
+     "Seeking information from the AHJ",
+     "Participating in jurisdictional activities",
+     "Attending departmental pre-planning events",
+     "Documenting information on hard copy or digital files"
+    ],
+    "a": 2
+   },
+   {
+    "n": 7,
+    "p": "What aspect of building age and construction should be considered during pre-planning?",
+    "pg": "565",
+    "o": [
+     "Restricted access points",
+     "Building interior signaling",
+     "Building security measures",
+     "Reinforcement rods and bulging walls"
+    ],
+    "a": 3
+   },
+   {
+    "n": 8,
+    "p": "What should be consulted to determine limits on setting up on steep grades?",
+    "pg": "565",
+    "o": [
+     "Pre-planning events",
+     "Building security measures",
+     "Manufacturer's documentation",
+     "Access to restricted travel lanes"
+    ],
+    "a": 2
+   },
+   {
+    "n": 9,
+    "p": "What problem can arise when positioning an aerial apparatus on an uphill grade?",
+    "pg": "566",
+    "o": [
+     "Cab doors and other items may be out of reach",
+     "The apparatus may not fit within grade limitations",
+     "The apparatus cannot be stabilized to zero degrees",
+     "The platform may not lower enough to reach the ground"
+    ],
+    "a": 3
+   },
+   {
+    "n": 10,
+    "p": "What is the rationale behind parking engine companies on the side of the street closest to the building for buildings up to four stories or no greater than 60 feet (20 m)?",
+    "pg": "567",
+    "o": [
+     "Ensure proper scrub area coverage",
+     "Provide maximum reach for the aerial device",
+     "Allow easier loading of equipment and personnel",
+     "Facilitate the reach over the engines by the aerial device"
+    ],
+    "a": 3
+   },
+   {
+    "n": 11,
+    "p": "How should personnel or victims be positioned in relation to wind and smoke?",
+    "pg": "568",
+    "o": [
+     "Upwind from smoke",
+     "Crosswind from smoke",
+     "Downwind from smoke",
+     "Parallel to the wind direction"
+    ],
+    "a": 0
+   },
+   {
+    "n": 12,
+    "p": "What should operators do when deploying stabilizers on the apparatus?",
+    "pg": "569",
+    "o": [
+     "Use stabilizer pads provided",
+     "Prioritize soft surfaces for stability",
+     "Utilize tactical features for operation",
+     "Override apparatus hydraulic systems"
+    ],
+    "a": 0
+   },
+   {
+    "n": 13,
+    "p": "How should aerial D/Os treat any wires they encounter?",
+    "pg": "571",
+    "o": [
+     "Treat them as energized",
+     "Park safely in their vicinity",
+     "Assume they are harmless",
+     "Energize them if necessary"
+    ],
+    "a": 0
+   },
+   {
+    "n": 14,
+    "p": "What is a key advantage of a rear-mount aerial apparatus when positioning at a scene?",
+    "pg": "572",
+    "o": [
+     "Lower overall travel height",
+     "Quicker loading of equipment and personnel",
+     "Better handling due to lower center of gravity",
+     "Effective reach from the rear of the apparatus"
+    ],
+    "a": 3
+   },
+   {
+    "n": 15,
+    "p": "What can affect the horizontal reach of an aerial device?",
+    "pg": "573",
+    "o": [
+     "HVAC units and emergency lights",
+     "Rear-mounted turntable obstruction",
+     "Vertical positioning of the apparatus",
+     "Efficiency of the mid-mount telescoping platform"
+    ],
+    "a": 0
+   },
+   {
+    "n": 16,
+    "p": "What happens to stability when the jackknifed angle exceeds 90 degrees?",
+    "pg": "575",
+    "o": [
+     "Increases",
+     "Decreases slowly",
+     "Decreases rapidly",
+     "Remains the same"
+    ],
+    "a": 2
+   },
+   {
+    "n": 17,
+    "p": "When should the D/O avoid short-jacking the apparatus?",
+    "pg": "575",
+    "o": [
+     "If the rotation interlock is engaged",
+     "If there is limited space for stabilization",
+     "When the outriggers can be fully deployed",
+     "When there are no ground obstructions present"
+    ],
+    "a": 2
+   },
+   {
+    "n": 18,
+    "p": "How does the condition of the fire building affect the positioning of the aerial device?",
+    "pg": "579",
+    "o": [
+     "It affects the ventilation strategy",
+     "It indicates the amount of water needed",
+     "It indicates the need for rescue operations",
+     "It impacts the placement within the collapse zone"
+    ],
+    "a": 3
+   },
+   {
+    "n": 19,
+    "p": "What additional challenge may firefighters face when responding to an incident on limited-access highways and turnpikes?",
+    "pg": "580",
+    "o": [
+     "Animal crossings",
+     "Traffic congestion",
+     "Construction zones",
+     "Poor road conditions"
+    ],
+    "a": 1
+   },
+   {
+    "n": 20,
+    "p": "In what circumstances might the aerial apparatus be necessary to complete a rescue operation?",
+    "pg": "582",
+    "o": [
+     "Forest fires",
+     "Water rescues",
+     "Power outages",
+     "Below-grade or high-angle rescues"
+    ],
+    "a": 3
+   },
+   {
+    "n": 21,
+    "p": "How should D/Os treat a track when operating near railroads?",
+    "pg": "582",
+    "o": [
+     "Cross it quickly without stopping",
+     "Ignore it if there are no trains in sight",
+     "Treat it as an active railroad line at all times",
+     "Assume it is inactive unless otherwise stated"
+    ],
+    "a": 2
+   },
+   {
+    "n": 22,
+    "p": "What is one guideline for operating an aerial apparatus from a bridge or overpass?",
+    "pg": "583",
+    "o": [
+     "Park all apparatus on the same span for convenience",
+     "Ignore wind conditions as they have minimal impact on bridges",
+     "Extend the aerial device to its maximum length for better visibility",
+     "Ensure the bridge has a load capacity safe for apparatus operations"
+    ],
+    "a": 3
+   },
+   {
+    "n": 23,
+    "p": "At a hazardous materials incident, the D/O should avoid parking the apparatus:",
+    "pg": "583",
+    "o": [
+     "near fuel stations.",
+     "near emergency exits.",
+     "over manholes or storm drains.",
+     "in areas with heavy pedestrian traffic."
+    ],
+    "a": 2
+   },
+   {
+    "n": 24,
+    "p": "Which aircraft component can aerial apparatus access for ventilation operations?",
+    "pg": "584",
+    "o": [
+     "Cockpit",
+     "Fuselage",
+     "Tail section",
+     "Landing gear"
+    ],
+    "a": 1
+   },
+   {
+    "n": 25,
+    "p": "When operating at storage tank fires, where should the D/O position the aerial apparatus?",
+    "pg": "586",
+    "o": [
+     "On top of the dike",
+     "Inside the dike's walls",
+     "Outside the dike's walls",
+     "Directly on the roadway"
+    ],
+    "a": 2
+   }
+  ]
+ },
+ {
+  "ch": 17,
+  "title": "Stabilizing the Aerial Apparatus",
+  "qs": [
+   {
+    "n": 1,
+    "p": "What happens to the suspension of an aerial device when it elevates from the cradle?",
+    "pg": "598",
+    "o": [
+     "It is not affected",
+     "It becomes unstable",
+     "It takes on more weight",
+     "It becomes more flexible"
+    ],
+    "a": 2
+   },
+   {
+    "n": 2,
+    "p": "According to manufacturer recommendations, when should aerial device stabilizers be lowered?",
+    "pg": "598",
+    "o": [
+     "Before deploying the aerial device",
+     "Each time the aerial device elevates",
+     "Only if the suspension is under stress",
+     "After the aerial device is fully elevated"
+    ],
+    "a": 1
+   },
+   {
+    "n": 3,
+    "p": "What happens to the center of gravity when the aerial device is extended straight over the front of the apparatus?",
+    "pg": "598",
+    "o": [
+     "It shifts forward",
+     "It shifts backwards",
+     "It becomes unstable",
+     "It remains unchanged"
+    ],
+    "a": 0
+   },
+   {
+    "n": 4,
+    "p": "What is the consequence of rotating the extended aerial device?",
+    "pg": "598",
+    "o": [
+     "The base of stability increases",
+     "The apparatus becomes unstable",
+     "The center of gravity remains the same",
+     "The center of gravity moves away from the longitudinal midline"
+    ],
+    "a": 3
+   },
+   {
+    "n": 5,
+    "p": "What does the extension of the gravity circle beyond the base of stability indicate?",
+    "pg": "599",
+    "o": [
+     "The apparatus is stable",
+     "The aerial device is fully deployed",
+     "The aerial device is properly aligned",
+     "The apparatus is at risk of overturning"
+    ],
+    "a": 3
+   },
+   {
+    "n": 6,
+    "p": "What happens to the center of gravity when the apparatus is parked on a lateral grade?",
+    "pg": "599",
+    "o": [
+     "It becomes unstable",
+     "It remains unchanged",
+     "It shifts to the lower side",
+     "It shifts to the higher side"
+    ],
+    "a": 2
+   },
+   {
+    "n": 7,
+    "p": "What can happen if the aerial device is raised over the lower side on a lateral grade?",
+    "pg": "599",
+    "o": [
+     "The base of stability increases",
+     "The apparatus remains unaffected",
+     "The apparatus becomes more stable",
+     "The gravity circle expands beyond the base of stability"
+    ],
+    "a": 3
+   },
+   {
+    "n": 8,
+    "p": "Where is the engagement switch for the PTO or hydraulic system typically located?",
+    "pg": "601",
+    "o": [
+     "On the hydraulic pump",
+     "In the cab of the vehicle",
+     "On the exterior of the aerial apparatus",
+     "In the rear compartment of the vehicle"
+    ],
+    "a": 1
+   },
+   {
+    "n": 9,
+    "p": "Which factor determines the procedures for engaging and disengaging PTOs on aerial apparatus?",
+    "pg": "601",
+    "o": [
+     "Type of transmission",
+     "Presence of an engine brake",
+     "Positioning of the aerial device",
+     "Activation of the hydraulic system"
+    ],
+    "a": 0
+   },
+   {
+    "n": 10,
+    "p": "When should the PTO engage if the aerial device is intended to operate with the apparatus pump during an incident?",
+    "pg": "601",
+    "o": [
+     "Before activating the pump",
+     "Immediately after the pump",
+     "After positioning the aerial device",
+     "Along with the activation of the hydraulic system"
+    ],
+    "a": 1
+   },
+   {
+    "n": 11,
+    "p": "When does the D/O engage the PTO system and begin the actual deployment of the stabilizers and the aerial device?",
+    "pg": "606",
+    "o": [
+     "Once the PTO system has charged sufficiently",
+     "Before the assessment of the set-up area is conducted",
+     "When the area is deemed safe and appropriate for stabilization",
+     "Once the weight distribution of the aerial apparatus is balanced"
+    ],
+    "a": 2
+   },
+   {
+    "n": 12,
+    "p": "Which statement best describes manufacturers' recommendations for setting stabilizers?",
+    "pg": "606",
+    "o": [
+     "Apparatus stabilizers should support half of the vehicle's weight",
+     "Manufacturers may recommend setting high-side stabilizers first, then low-side stabilizers",
+     "All apparatus manufacturers call for tires to remain on the ground to limit the effect of sliding",
+     "Manufacturers recommend stabilizers extend halfway with tires 4 inches (100 mm) off the ground"
+    ],
+    "a": 1
+   },
+   {
+    "n": 13,
+    "p": "When should cribbing be used for aerial ladder stabilization?",
+    "pg": "607",
+    "o": [
+     "Only as a last resort",
+     "In every stabilization scenario",
+     "As the primary stabilization method",
+     "When the stabilizer pads are not working properly"
+    ],
+    "a": 0
+   },
+   {
+    "n": 14,
+    "p": "What is the recommended placement for the portable stabilizer plates?",
+    "pg": "608",
+    "o": [
+     "Behind the stabilizer jacks",
+     "In front of the stabilizer beams",
+     "Centered beneath the stabilizer shoes",
+     "Aligned with the rear tires of the apparatus"
+    ],
+    "a": 2
+   },
+   {
+    "n": 15,
+    "p": "What is short-jacking in relation to aerial apparatus operations?",
+    "pg": "610",
+    "o": [
+     "Personnel working in restricted areas",
+     "Partial extension of the stabilizer arms",
+     "Working over restricted areas with extended arms",
+     "Decreasing the load and range of movement capabilities"
+    ],
+    "a": 1
+   },
+   {
+    "n": 16,
+    "p": "Where is the ideal location for stabilizing an aerial apparatus?",
+    "pg": "610",
+    "o": [
+     "Sloped ground for better drainage",
+     "Uneven terrain with maximum stability",
+     "Near-level pavement with minimal pitch",
+     "Any location specified in the manufacturer's instructions"
+    ],
+    "a": 2
+   },
+   {
+    "n": 17,
+    "p": "What is the recommended procedure for stabilizing an apparatus on uneven terrain with lateral unevenness?",
+    "pg": "613",
+    "o": [
+     "Lower all stabilizers simultaneously",
+     "Lower the stabilizers on the uphill side first",
+     "Lower the stabilizers on the downhill side first",
+     "Lower the stabilizers only on the downhill side"
+    ],
+    "a": 1
+   },
+   {
+    "n": 18,
+    "p": "What should the D/O ensure before deploying stabilizers on unstable objects or ground surfaces?",
+    "pg": "614",
+    "o": [
+     "The stability of the surrounding area",
+     "The presence of preincident planning",
+     "The ability to handle the weight and stresses",
+     "The availability of alternate apparatus placement"
+    ],
+    "a": 2
+   },
+   {
+    "n": 19,
+    "p": "Salt should be avoided when stabilizing on icy or slippery surfaces because it:",
+    "pg": "615",
+    "o": [
+     "is extremely expensive.",
+     "may instantly damage the stabilizer pads.",
+     "increases the risk of electrostatic discharge.",
+     "can reduce the contact of the stabilizers with the ground."
+    ],
+    "a": 3
+   },
+   {
+    "n": 20,
+    "p": "How should the selector valve control be positioned for proper operational positions?",
+    "pg": "617",
+    "o": [
+     "Aerial reset",
+     "Aerial setting",
+     "Default setting",
+     "Stabilization position"
+    ],
+    "a": 3
+   },
+   {
+    "n": 21,
+    "p": "The D/O should move the wheel chocks slightly away from the tires before retracting the stabilizers to:",
+    "pg": "618",
+    "o": [
+     "create space for raising the stabilizers.",
+     "facilitate the repositioning of the apparatus.",
+     "release any pressure on the stabilization system.",
+     "prevent the apparatus from settling on top of the chocks."
+    ],
+    "a": 3
+   }
+  ]
+ },
+ {
+  "ch": 18,
+  "title": "Operating Aerial Apparatus",
+  "qs": [
+   {
+    "n": 1,
+    "p": "In situations where the operator cannot maintain visual contact with the aerial device, what should they rely on?",
+    "pg": "629",
+    "o": [
+     "Proper positioning",
+     "Spotter assistance",
+     "Efficient use of stabilizing power",
+     "Memorizing aerial device controls"
+    ],
+    "a": 1
+   },
+   {
+    "n": 2,
+    "p": "What is the recommended approach when a fire department expects their D/Os to operate different types of aerial apparatus?",
+    "pg": "629",
+    "o": [
+     "Train the D/Os on each apparatus",
+     "Provide detailed manuals for each apparatus",
+     "Limit the D/Os to operating only one apparatus",
+     "Assign specialized D/Os for each apparatus type"
+    ],
+    "a": 0
+   },
+   {
+    "n": 3,
+    "p": "Where is the primary control position typically located for the aerial operator?",
+    "pg": "629",
+    "o": [
+     "Inside the cab",
+     "At the turntable",
+     "At the tip of the aerial device",
+     "At the front of the aerial apparatus"
+    ],
+    "a": 1
+   },
+   {
+    "n": 4,
+    "p": "What are the two basic types of controls for aerial devices?",
+    "pg": "629",
+    "o": [
+     "Hydraulic and electric",
+     "Manual and automatic",
+     "Mechanical and electronic",
+     "Hydraulic and electric-over-hydraulic"
+    ],
+    "a": 3
+   },
+   {
+    "n": 5,
+    "p": "What is the purpose of having the primary control operator lower the aerial device the last 5 to 10 feet (1.5 to 3 m) to the bedded position?",
+    "pg": "629",
+    "o": [
+     "Enhance apparatus stability",
+     "Increase the range of motion",
+     "Override the secondary controls",
+     "Provide a better view of the cradle"
+    ],
+    "a": 3
+   },
+   {
+    "n": 6,
+    "p": "What precaution must firefighters take when operating the secondary controls on a platform?",
+    "pg": "629",
+    "o": [
+     "Ensure proper belting into position",
+     "Maintain constant radio communication with IC",
+     "Communicate with the primary control operator",
+     "Turn off mounted equipment such as scene lights"
+    ],
+    "a": 0
+   },
+   {
+    "n": 7,
+    "p": "Whenever the aerial device is operating from the secondary position, what should the status be at the primary control station?",
+    "pg": "629 - 630",
+    "o": [
+     "Occupied by a spotter",
+     "Acivated with safety switches",
+     "The control station would be unoccupied",
+     "Occupied by a trained and authorized operator"
+    ],
+    "a": 3
+   },
+   {
+    "n": 8,
+    "p": "The load limit indicators provide the D/O with:",
+    "pg": "631",
+    "o": [
+     "the aerial device weight.",
+     "distributed load capacities.",
+     "aerial device capacity ratings.",
+     "the weight that a firefighter must have."
+    ],
+    "a": 0
+   },
+   {
+    "n": 9,
+    "p": "What are the two types of articulating aerial apparatus?",
+    "pg": "634",
+    "o": [
+     "Water towers and aerial platforms",
+     "Water towers and telescoping devices",
+     "Articulating booms and personnel platforms",
+     "Water nozzles and master stream platforms"
+    ],
+    "a": 0
+   },
+   {
+    "n": 10,
+    "p": "What must the D/O consider when lowering the aerial device?",
+    "pg": "634",
+    "o": [
+     "Skill level of the operator",
+     "Length of the aerial device",
+     "Stability of the truck during operation",
+     "Usage of the waterway and the nozzle position"
+    ],
+    "a": 3
+   },
+   {
+    "n": 11,
+    "p": "What is used to secure the monitor in different positions on pre-piped waterways?",
+    "pg": "636",
+    "o": [
+     "Fly section or ladder tip",
+     "Lever or an electric control",
+     "Rescue mode or waterway mode",
+     "Manual pin or a mechanical locking system"
+    ],
+    "a": 3
+   },
+   {
+    "n": 12,
+    "p": "Why are aerial ladders without pre-piped waterways considered to present an operational challenge?",
+    "pg": "637",
+    "o": [
+     "They have solid ladder pipe clamps",
+     "They are not required by NFPA 1900",
+     "They do not have a detachable waterway",
+     "They require more adjustments to secure the pipe to the ladder"
+    ],
+    "a": 3
+   },
+   {
+    "n": 13,
+    "p": "Protective water curtains on elevating platforms are not designed to enable operations in situations where:",
+    "pg": "640",
+    "o": [
+     "the radiant heat shield has been disabled.",
+     "the ambient temperature is below 32°F (0°C).",
+     "the apparatus is on more than a 15 degree incline.",
+     "personnel and equipment may be exposed to radiant heat."
+    ],
+    "a": 3
+   },
+   {
+    "n": 14,
+    "p": "What is the recommended action if thunderstorms producing lightning are nearby?",
+    "pg": "641",
+    "o": [
+     "Evacuate the area immediately",
+     "Continue emergency duties as usual",
+     "Stay near the aerial apparatus for protection",
+     "Seek shelter inside a building or enclosed cab"
+    ],
+    "a": 3
+   },
+   {
+    "n": 15,
+    "p": "Where can you find information regarding wind speed limitations for safe operation?",
+    "pg": "641",
+    "o": [
+     "Load chart",
+     "Wind speed sensors",
+     "Aerial device specifications",
+     "Manufacturer's recommendations"
+    ],
+    "a": 3
+   },
+   {
+    "n": 16,
+    "p": "How does cold weather affect the performance of aerial apparatus?",
+    "pg": "642",
+    "o": [
+     "Reduces the structural integrity of the device",
+     "Causes the device to experience shock loading",
+     "Challenges engine cooling systems and drivelines",
+     "Increases the viscosity of hydraulic oil, slowing down machine operation"
+    ],
+    "a": 3
+   },
+   {
+    "n": 17,
+    "p": "What should the D/O be prepared to do when the danger of exposure to extreme heat is evident?",
+    "pg": "645",
+    "o": [
+     "Maintain situational awareness",
+     "Request assistance from additional personnel",
+     "Shut down the operation and evacuate the area",
+     "Reposition the device and adjust the stream range"
+    ],
+    "a": 3
+   },
+   {
+    "n": 18,
+    "p": "What could happen if the hydraulic oil temperature exceeds its recommended range during prolonged operations?",
+    "pg": "646",
+    "o": [
+     "Instability in the apparatus",
+     "Premature equipment failure",
+     "Increased equipment efficiency",
+     "Enhanced power take-off (PTO) operation"
+    ],
+    "a": 1
+   },
+   {
+    "n": 19,
+    "p": "In what scenarios are below-grade aerial device operations commonly required?",
+    "pg": "649",
+    "o": [
+     "Special rescue operations",
+     "Fire suppression activities",
+     "Aerial surveillance missions",
+     "Maintenance and repair operations"
+    ],
+    "a": 0
+   },
+   {
+    "n": 20,
+    "p": "During visual/operational checks and testing, what should operators do in relation to moving or rotating parts of the apparatus?",
+    "pg": "650",
+    "o": [
+     "Stay clear of them",
+     "Secure them properly",
+     "Inspect them regularly",
+     "Lubricate them frequently"
+    ],
+    "a": 0
+   },
+   {
+    "n": 21,
+    "p": "What fall protection features are present on an aerial ladder and an aerial platform?",
+    "pg": "653",
+    "o": [
+     "Railings on the ladder and gates on the platform",
+     "Railings and gates on both the ladder and the platform",
+     "Handrails and gates on the ladder and railings on the platform",
+     "Handrails on the ladder and railings and gates on the platform"
+    ],
+    "a": 3
+   },
+   {
+    "n": 22,
+    "p": "A pinch hazard on an aerial device occurs when wire rope comes close to or contacts:",
+    "pg": "654",
+    "o": [
+     "hydraulic fluid lines.",
+     "electrical components.",
+     "safety barriers or guardrails.",
+     "moving parts such as pulleys or sheaves."
+    ],
+    "a": 3
+   },
+   {
+    "n": 23,
+    "p": "What is the pinch effect in relation to a tractor-drawn aerial apparatus?",
+    "pg": "657",
+    "o": [
+     "The steering wheel becomes harder to turn",
+     "The apparatus experiences a loss of maneuverability",
+     "The angle between the tractor and the trailer increases",
+     "The rearmost axle gets closer to the tractor during tight turns"
+    ],
+    "a": 3
+   },
+   {
+    "n": 24,
+    "p": "The purpose of turning the tiller wheels sharply towards the building during stabilization is to:",
+    "pg": "660",
+    "o": [
+     "initiate a turntable rotation.",
+     "align the truck with the parking area.",
+     "straighten the apparatus for stabilization.",
+     "achieve the desired angle between the tractor and trailer."
+    ],
+    "a": 3
+   },
+   {
+    "n": 25,
+    "p": "What action should be taken to inspect sections of the aerial device that may not have been visible during initial checks?",
+    "pg": "664",
+    "o": [
+     "Check the hydraulic systems for leakage",
+     "Ensure proper alignment of slides and rollers",
+     "Extend the ladder to its full horizontal position",
+     "Verify the proper performance of extension cables"
+    ],
+    "a": 2
+   },
+   {
+    "n": 26,
+    "p": "What are the two basic categories of apparatus tests?",
+    "pg": "666",
+    "o": [
+     "Initial tests and annual tests",
+     "Pre-service tests and service tests",
+     "Performance tests and safety tests",
+     "Independent tests and departmental tests"
+    ],
+    "a": 1
+   }
+  ]
+ },
+ {
+  "ch": 19,
+  "title": "Aerial Apparatus Strategies and Tactics",
+  "qs": [
+   {
+    "n": 1,
+    "p": "Operational strategies represent the overall _____ and terminate an incident.",
+    "pg": "687",
+    "o": [
+     "plan for pre-arrival information",
+     "techniques used at a fire rescue",
+     "communication techniques at a fire scene",
+     "plans to successfully mitigate an emergency"
+    ],
+    "a": 3
+   },
+   {
+    "n": 2,
+    "p": "What is a determining factor for adopting a defensive strategy in aerial operations?",
+    "pg": "688",
+    "o": [
+     "Property salvageability",
+     "Occupant rescue potential",
+     "Availability of aerial devices",
+     "Hazardous conditions at the scene"
+    ],
+    "a": 3
+   },
+   {
+    "n": 3,
+    "p": "What is the purpose of using elevated master streams from the exterior in defensive strategies?",
+    "pg": "689",
+    "o": [
+     "Prevent building collapse",
+     "Minimize human casualties",
+     "Apply large amounts of water",
+     "Facilitate interior search operations"
+    ],
+    "a": 2
+   },
+   {
+    "n": 4,
+    "p": "Where should the apparatus be positioned when using elevated master streams to reduce the risk of damage or injury in the event of building collapse?",
+    "pg": "690",
+    "o": [
+     "At ground level",
+     "At the corners of the building",
+     "On the opposite side of the building",
+     "In close proximity to the building's FDC"
+    ],
+    "a": 1
+   },
+   {
+    "n": 5,
+    "p": "Where should the D/O direct the master stream during a transitional attack?",
+    "pg": "692",
+    "o": [
+     "At the seat of the fire",
+     "At the walls of the target fire area",
+     "At the center of the target fire area",
+     "At the ceiling of the target fire area"
+    ],
+    "a": 3
+   },
+   {
+    "n": 6,
+    "p": "Because a fire’s intense heat often forces apparatus to position a good distance from the fire, what type of stream is commonly used to stop fire spread through a building?",
+    "pg": "692",
+    "o": [
+     "Fog stream",
+     "Wide-angle stream",
+     "High-pressure stream",
+     "Solid or straight stream"
+    ],
+    "a": 3
+   },
+   {
+    "n": 7,
+    "p": "What precaution should the D/O take to prevent fire spread and protect unburned portions of the building during a defensive attack?",
+    "pg": "693",
+    "o": [
+     "Increase the water flow rate of the master stream",
+     "Introduce air flow to control the direction of the fire",
+     "Position the apparatus on the burned side of the building",
+     "Position the apparatus on the unburned side of the building"
+    ],
+    "a": 3
+   },
+   {
+    "n": 8,
+    "p": "Both current and expected _____ affect a fire’s ability to spread to exposures.",
+    "pg": "694",
+    "o": [
+     "fill site conditions",
+     "weather conditions",
+     "apparatus performance test",
+     "building construction regulations"
+    ],
+    "a": 1
+   },
+   {
+    "n": 9,
+    "p": "In severe fire situations, the fire itself can create its own _____ conditions in the form of more rapid convection currents.",
+    "pg": "694",
+    "o": [
+     "wind",
+     "smoke",
+     "humidity",
+     "temperature"
+    ],
+    "a": 0
+   },
+   {
+    "n": 10,
+    "p": "How should a D/O position an apparatus when a platform is used for victim rescue?",
+    "pg": "697",
+    "o": [
+     "Align the gate with the open area of the platform",
+     "Position the turntable away from the corner of the building",
+     "Position the apparatus away from the open area of the platform",
+     "Ensure the nozzles and waterways obstruct entry to the front of the platform"
+    ],
+    "a": 0
+   },
+   {
+    "n": 11,
+    "p": "In situations requiring aerial apparatus for rescue, the main objective is to _____ with a minimum number of aerial movements.",
+    "pg": "698",
+    "o": [
+     "rescue all victims simultaneously",
+     "contain and control the apparatus",
+     "reach as many victims or points of egress as possible",
+     "assess the least number of hazard conditions possible"
+    ],
+    "a": 2
+   },
+   {
+    "n": 12,
+    "p": "What is the recommended position for the extended and rotated aerial device when raising to a victim?",
+    "pg": "699",
+    "o": [
+     "Above the objective",
+     "Parallel to the victim",
+     "Diagonal to the victim",
+     "Perpendicular to the objective"
+    ],
+    "a": 3
+   },
+   {
+    "n": 13,
+    "p": "When positioning the aerial device tip for window rescue, the window opening should:",
+    "pg": "701",
+    "o": [
+     "not be diminished for safe access.",
+     "be diminished for safety purposes.",
+     "be fully accessible for firefighters only.",
+     "be half-way blocked by the aerial device tip."
+    ],
+    "a": 0
+   },
+   {
+    "n": 14,
+    "p": "When removing trapped victims from a roof (or other similarly open, flat surfaces), the tip of the aerial ladder should be placed so that at least _____ extends above the edge of the roof.",
+    "pg": "703",
+    "o": [
+     "2 feet (600 mm)",
+     "3 feet (1 m)",
+     "6 feet (2 m)",
+     "12 feet (3.5 m)"
+    ],
+    "a": 2
+   },
+   {
+    "n": 15,
+    "p": "How many firefighters should be assigned to assist victims in boarding and descending the aerial ladder?",
+    "pg": "704",
+    "o": [
+     "One, but preferably two",
+     "Three, with a spotter",
+     "A total of four, two on each side",
+     "As many as possible"
+    ],
+    "a": 0
+   },
+   {
+    "n": 16,
+    "p": "In rope rescue operations, how are most lifting eyes intended to be used?",
+    "pg": "709",
+    "o": [
+     "In pairs as separate anchors",
+     "Individually as a single anchor",
+     "As the primary means of lifting victims and rescuers",
+     "In pairs as a single anchor for a single rescue rope only"
+    ],
+    "a": 3
+   },
+   {
+    "n": 17,
+    "p": "Why should fire departments generally discourage the use of aerial apparatus for water rescues?",
+    "pg": "710",
+    "o": [
+     "Unavailable equipment",
+     "Safety-related concerns",
+     "Inadequate flotation devices",
+     "Lack of training for aerial operations"
+    ],
+    "a": 1
+   },
+   {
+    "n": 18,
+    "p": "What caution should the D/O keep in mind regarding ventilation operations?",
+    "pg": "711",
+    "o": [
+     "Aerial devices can be used as a forcible entry tool",
+     "Ventilation should be prioritized over rescue operations",
+     "Apparatus and manpower should mainly focus on ventilation operations",
+     "They should not monopolize resources that may be needed for rescue operations"
+    ],
+    "a": 3
+   },
+   {
+    "n": 19,
+    "p": "What is the optimal position to place an apparatus during a rescue approach?",
+    "pg": "712",
+    "o": [
+     "Upwind",
+     "Downwind",
+     "Parallel to the wind direction",
+     "Perpendicular to the wind direction"
+    ],
+    "a": 0
+   },
+   {
+    "n": 20,
+    "p": "During pre-arrival communication at an aerial operation, ICs communicate apparatus positioning and:",
+    "pg": "713",
+    "o": [
+     "weight limits.",
+     "aerial objectives.",
+     "scrub area location.",
+     "turntable placement."
+    ],
+    "a": 1
+   },
+   {
+    "n": 21,
+    "p": "What do D/Os primarily communicate during on-scene communications?",
+    "pg": "714",
+    "o": [
+     "Water supply strategy",
+     "Use of predetermined hand signals",
+     "Incident size-up and risk assessment",
+     "Apparatus location and turntable placement"
+    ],
+    "a": 3
+   }
+  ]
+ },
+ {
+  "ch": 20,
+  "title": "Fire Service Knowledge and Skills for Driver/Operators",
+  "qs": [
+   {
+    "n": 1,
+    "p": "Who is responsible for establishing the manner in which the fire service is organized?",
+    "pg": "724",
+    "o": [
+     "Chief officer",
+     "Firefighter II",
+     "Company officer",
+     "Authority having jurisdiction (AHJ)"
+    ],
+    "a": 3
+   },
+   {
+    "n": 2,
+    "p": "The most common fire department organizational structure is:",
+    "pg": "725",
+    "o": [
+     "linear.",
+     "scalar.",
+     "circular.",
+     "top-down."
+    ],
+    "a": 1
+   },
+   {
+    "n": 3,
+    "p": "Which type of fire department only employs full-time firefighters that live in the fire station while on duty?",
+    "pg": "727",
+    "o": [
+     "Career department",
+     "Volunteer department",
+     "Composite department",
+     "Combination department"
+    ],
+    "a": 0
+   },
+   {
+    "n": 4,
+    "p": "The basic unit of fire fighting operations is a:",
+    "pg": "727",
+    "o": [
+     "division.",
+     "battalion.",
+     "company.",
+     "response district."
+    ],
+    "a": 2
+   },
+   {
+    "n": 5,
+    "p": "Which personnel group delivers emergency services to the public?",
+    "pg": "728",
+    "o": [
+     "Line personnel",
+     "Staff personnel",
+     "District personnel",
+     "Maintenance personnel"
+    ],
+    "a": 0
+   },
+   {
+    "n": 6,
+    "p": "In most jurisdictions, professional qualifications for firefighters are based on National Fire Protection Association (NFPA) Standard:",
+    "pg": "728",
+    "o": [
+     "470.",
+     "1010.",
+     "1072.",
+     "1550."
+    ],
+    "a": 1
+   },
+   {
+    "n": 7,
+    "p": "Which personnel supervise a fire company in the station and at fires?",
+    "pg": "731",
+    "o": [
+     "Firefighter I",
+     "Fire Marshals",
+     "Company Officers",
+     "Incident Safety Officers"
+    ],
+    "a": 2
+   },
+   {
+    "n": 8,
+    "p": "Instructors and instructional developers may be a part of a(an):",
+    "pg": "734",
+    "o": [
+     "training division.",
+     "line personnel group.",
+     "fire prevention division.",
+     "Incident Command System."
+    ],
+    "a": 0
+   },
+   {
+    "n": 9,
+    "p": "What sets boundaries and establishes standards of conduct that an organization expects from its members?",
+    "pg": "734",
+    "o": [
+     "Policies",
+     "Procedures",
+     "Frameworks",
+     "Recommendations"
+    ],
+    "a": 0
+   },
+   {
+    "n": 10,
+    "p": "Detailed written plans that list specific steps for approaching a recurring problem or situation are known as:",
+    "pg": "735",
+    "o": [
+     "policies.",
+     "standards.",
+     "guidelines.",
+     "procedures."
+    ],
+    "a": 3
+   },
+   {
+    "n": 11,
+    "p": "What is one organization that fire departments may frequently interact with to shut off electricity at an incident?",
+    "pg": "735 - 736",
+    "o": [
+     "City council",
+     "Public works",
+     "College/university",
+     "Community outreach"
+    ],
+    "a": 1
+   },
+   {
+    "n": 12,
+    "p": "The highest risk factor firefighters face is a:",
+    "pg": "736",
+    "o": [
+     "severe burn.",
+     "respiratory failure.",
+     "sudden cardiac arrest.",
+     "posttraumatic stress injury."
+    ],
+    "a": 2
+   },
+   {
+    "n": 13,
+    "p": "The 16 Firefighter Life Safety Initiatives were developed by the:",
+    "pg": "736",
+    "o": [
+     "National Fire Protection Association (NFPA).",
+     "International Association of Fire Chiefs (IAFC).",
+     "National Fallen Firefighters Foundation (NFFF).",
+     "Occupational Safety and Health Administration (OSHA)."
+    ],
+    "a": 2
+   },
+   {
+    "n": 14,
+    "p": "The minimum requirements for a fire department safety and health program are established by NFPA:",
+    "pg": "737",
+    "o": [
+     "101.",
+     "470.",
+     "1001.",
+     "1550."
+    ],
+    "a": 3
+   },
+   {
+    "n": 15,
+    "p": "NFPA 1550 requires that emergency operations be managed through a(an):",
+    "pg": "740",
+    "o": [
+     "Fire Marshal.",
+     "engine company.",
+     "Fire Prevention Division.",
+     "Incident Management System (IMS)."
+    ],
+    "a": 3
+   },
+   {
+    "n": 16,
+    "p": "Following critical incidents or potentially traumatizing events (PTE), firefighters need to utilize ____ to deal with their stress.",
+    "pg": "745",
+    "o": [
+     "paid personal leave",
+     "vacation loan benefits",
+     "positive coping mechanisms",
+     "Critical Incident Stress Management (CISM)"
+    ],
+    "a": 2
+   },
+   {
+    "n": 17,
+    "p": "The leading cause of firefighter fatalities is:",
+    "pg": "746",
+    "o": [
+     "cancer.",
+     "smoke inhalation.",
+     "respiratory diseases.",
+     "cardiovascular disease."
+    ],
+    "a": 3
+   },
+   {
+    "n": 18,
+    "p": "Which firefighter wellness program can provide access to the correct treatment options for firefighters who are exposed to illnesses or chemicals?",
+    "pg": "749",
+    "o": [
+     "Emergency operations program",
+     "Member assistance program (MAP)",
+     "Infection and exposure control program",
+     "Firefighter Cancer Support Network (FCSN)"
+    ],
+    "a": 2
+   },
+   {
+    "n": 19,
+    "p": "A member assistance program (MAP):",
+    "pg": "749",
+    "o": [
+     "is limited in the services it provides to firefighters.",
+     "provides services to both firefighters and their families.",
+     "does not provide services for those that choose to use tobacco.",
+     "only provides assistance for substance use, abuse, and dependence."
+    ],
+    "a": 1
+   },
+   {
+    "n": 20,
+    "p": "Firefighters should not wear clothing, including underwear, made of _____ while on duty or under PPE.",
+    "pg": "751",
+    "o": [
+     "silk",
+     "cotton",
+     "100 percent natural fibers",
+     "non-fire-resistant synthetic materials"
+    ],
+    "a": 3
+   },
+   {
+    "n": 21,
+    "p": "Regarding PPE, the lower the heat transfer rate is, the:",
+    "pg": "754",
+    "o": [
+     "less protective clothing is needed.",
+     "longer protective clothing will protect you.",
+     "more likely protective clothing is to cause contact burns on the skin.",
+     "longer it will take for protective clothing to cool after leaving the fire environment."
+    ],
+    "a": 1
+   },
+   {
+    "n": 22,
+    "p": "NFPA 1550, Standard for Emergency Responder Health and Safety requires that structural fire fighting helmets be equipped with:",
+    "pg": "756",
+    "o": [
+     "SCBA facepieces.",
+     "protective hoods.",
+     "face shields or goggles.",
+     "personal alert safety systems (PASS)."
+    ],
+    "a": 2
+   },
+   {
+    "n": 23,
+    "p": "Which piece of structural fire fighting PPE uses an alarm to alert personnel that a firefighter is in danger?",
+    "pg": "760",
+    "o": [
+     "Drag rescue device (DRD)",
+     "Helmet-mounted alert system",
+     "Personal alert safety system (PASS)",
+     "Self-contained breathing apparatus (SCBA)"
+    ],
+    "a": 2
+   },
+   {
+    "n": 24,
+    "p": "What can prevent you from being aware of important environmental changes and make you overconfident of your own safety?",
+    "pg": "762",
+    "o": [
+     "Loose clothing",
+     "PPE protective barriers",
+     "A SCBA shoulder harness",
+     "Prolonged exposure to heat"
+    ],
+    "a": 1
+   },
+   {
+    "n": 25,
+    "p": "Which type of PPE cleaning includes using a gentle spray of water to rinse off debris and other contaminants?",
+    "pg": "765",
+    "o": [
+     "Advanced cleaning",
+     "Specialized cleaning",
+     "Informal PPE cleaning",
+     "Preliminary exposure reduction"
+    ],
+    "a": 3
+   }
+  ]
+ },
+ {
+  "ch": 21,
+  "title": "Fire Department Communications",
+  "qs": [
+   {
+    "n": 1,
+    "p": "Which telecommunications system uses a central location that takes all emergency calls and routes the call to the appropriate dispatcher?",
+    "pg": "775",
+    "o": [
+     "Mobile Data Terminal (MDT)",
+     "Public Safety Answering Point (PSAP)",
+     "National Incident Management System (NIMS)",
+     "Emergency Service Specific Telecommunications Center"
+    ],
+    "a": 1
+   },
+   {
+    "n": 2,
+    "p": "The more time a department spends obtaining information and dispatching resources, the:",
+    "pg": "779",
+    "o": [
+     "less likely there would be liability or legal issues.",
+     "longer an emergency situation goes unmitigated.",
+     "less potential there is for severe injuries or damage.",
+     "more time there is to improve communication and outcomes."
+    ],
+    "a": 1
+   },
+   {
+    "n": 3,
+    "p": "What agency issues radio licenses to fire departments that operate radio equipment?",
+    "pg": "780",
+    "o": [
+     "Federal Trade Commission (FTC)",
+     "Federal Communications Commission (FCC)",
+     "National Incident Management System (NIMS)",
+     "National Institute of Standards and Technology (NIST)"
+    ],
+    "a": 1
+   },
+   {
+    "n": 4,
+    "p": "The National Incident Management System (NIMS) requires the use of _____ for radio communications.",
+    "pg": "780",
+    "o": [
+     "10-codes",
+     "clear text",
+     "encrypted speech",
+     "agency-specific codes"
+    ],
+    "a": 1
+   },
+   {
+    "n": 5,
+    "p": "Radios used in fixed locations such as fire stations are known as:",
+    "pg": "781",
+    "o": [
+     "mobile radios.",
+     "portable radios.",
+     "fireground radios.",
+     "base station radios."
+    ],
+    "a": 3
+   },
+   {
+    "n": 6,
+    "p": "Portable radios are handheld devices that are:",
+    "pg": "782",
+    "o": [
+     "intrinsically safe for any environment.",
+     "more powerful than fixed or mobile radios.",
+     "powered by rechargeable or replaceable battery packs.",
+     "designed to have better performance than mobile radios."
+    ],
+    "a": 2
+   },
+   {
+    "n": 7,
+    "p": "The two main fireground channels used by fire departments when they arrive at an incident are a Command channel and a ____ channel.",
+    "pg": "784",
+    "o": [
+     "tactical",
+     "dispatch",
+     "firefighter",
+     "operations"
+    ],
+    "a": 0
+   },
+   {
+    "n": 8,
+    "p": "Remote areas or location inside structures that cause the loss of radio signals are known as a(an):",
+    "pg": "784",
+    "o": [
+     "dead zone.",
+     "physical barrier.",
+     "interference source.",
+     "ambient noise zone."
+    ],
+    "a": 0
+   },
+   {
+    "n": 9,
+    "p": "All recorded transmissions become part of the official record on an incident and may be made public under _____ requests.",
+    "pg": "785",
+    "o": [
+     "Emergency Service Specific",
+     "Mobile Data Terminal (MDT)",
+     "Federal Trade Commission (FTC)",
+     "Freedom of Information Act (FOIA)"
+    ],
+    "a": 3
+   },
+   {
+    "n": 10,
+    "p": "One good practice for communicating with radios is to:",
+    "pg": "786",
+    "o": [
+     "use agency specific codes such as 10-codes.",
+     "key the microphone and and immediately start speaking.",
+     "avoid identifying yourself or your unit on the radio channel.",
+     "require the receiver of the message to acknowledge every message."
+    ],
+    "a": 3
+   }
+  ]
+ }
+];
+</script>
+<script>(function () {
+  const LETTERS = 'ABCDEF';
+  const STORE = 'do-quiz-v1';
+
+  // Flatten questions and give each a stable id: "chapter-question"
+  const Q = {};
+  CHAPTERS.forEach(c => c.qs.forEach(q => {
+    Q[c.ch + '-' + q.n] = Object.assign({ ch: c.ch }, q);
+  }));
+  const chapterIds = ch => CHAPTERS.find(c => c.ch === ch).qs.map(q => ch + '-' + q.n);
+  const allIds = Object.keys(Q);
+
+  // Saved state (answers survive page reloads)
+  let saved = { answers: {}, scope: 'all' };
+  try { saved = Object.assign(saved, JSON.parse(localStorage.getItem(STORE)) || {}); } catch (e) {}
+  const answers = saved.answers;
+  let scope = saved.scope;
+  if (scope !== 'all' && !CHAPTERS.some(c => c.ch === scope)) scope = 'all';
+  const save = () => { try { localStorage.setItem(STORE, JSON.stringify({ answers, scope })); } catch (e) {} };
+
+  let order = [];
+  let optOrder = {};
+
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+  const shuffleArr = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const isRight = id => answers[id] === Q[id].a;
+
+  function buildScope(shuffle) {
+    let ids = scope === 'all' ? allIds.slice() : chapterIds(scope);
+    const count = scope === 'all' ? +$('count').value : 0;
+    if (count > 0) { ids = shuffleArr(ids).slice(0, count); shuffle = true; }
+    order = shuffle ? shuffleArr(ids) : ids;
+    optOrder = {};
+    order.forEach(id => {
+      const idx = Q[id].o.map((_, i) => i);
+      optOrder[id] = shuffle ? shuffleArr(idx) : idx;
+    });
+    render();
+  }
+
+  function renderTabs() {
+    const tabs = $('tabs');
+    tabs.innerHTML = '';
+    const make = (value, label, ids, title) => {
+      const b = document.createElement('button');
+      b.className = 'tab';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', scope === value);
+      b.title = title;
+      const answered = ids.filter(id => id in answers).length;
+      const right = ids.filter(isRight).length;
+      b.innerHTML = esc(label) + '<small>' + (answered ? right + '/' + answered : ids.length + ' q') + '</small>';
+      b.onclick = () => {
+        scope = value; save();
+        $('filter').value = 'all';
+        $('count').hidden = scope !== 'all';
+        buildScope(false);
+        b.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      };
+      tabs.appendChild(b);
+    };
+    make('all', 'All', allIds, 'All chapters combined');
+    CHAPTERS.forEach(c => make(c.ch, 'Ch ' + c.ch, chapterIds(c.ch), c.title));
+  }
+
+  function card(id, n) {
+    const q = Q[id], r = answers[id], done = r !== undefined;
+    const el = document.createElement('div');
+    el.className = 'q' + (done ? (r === q.a ? ' right' : ' wrong') : '');
+    const where = scope === 'all' ? 'Chapter ' + q.ch + ', question ' + q.n + ' ' : '';
+    el.innerHTML = '<div class="qhead"><span class="num">' + n + '</span><p class="prompt">' + esc(q.p) + '</p></div>' +
+      '<div class="page">' + where + (q.pg ? '[p. ' + esc(q.pg) + ']' : '') + '</div>';
+    const opts = document.createElement('div');
+    opts.className = 'opts';
+    optOrder[id].forEach((oi, k) => {
+      const b = document.createElement('button');
+      b.className = 'opt';
+      b.innerHTML = '<span class="l">' + LETTERS[k] + '</span><span>' + esc(q.o[oi]) + '</span>';
+      if (done) {
+        b.disabled = true;
+        if (oi === q.a) b.classList.add('correct');
+        else if (oi === r) b.classList.add('chosen-wrong');
+      }
+      b.onclick = () => {
+        answers[id] = oi; save();
+        el.replaceWith(card(id, n));
+        updateStats();
+      };
+      opts.appendChild(b);
+    });
+    el.appendChild(opts);
+    if (done) {
+      const p = document.createElement('p');
+      if (r === q.a) { p.className = 'fb good'; p.textContent = 'Correct.'; }
+      else {
+        p.className = 'fb bad';
+        p.textContent = 'Incorrect. Answer: ' + LETTERS[optOrder[id].indexOf(q.a)] + ', ' + q.o[q.a];
+      }
+      el.appendChild(p);
+    }
+    return el;
+  }
+
+  function render() {
+    const f = $('filter').value, list = $('list');
+    $('scopeTitle').textContent = scope === 'all' ? 'All chapters' : 'Chapter ' + scope + ': ' + CHAPTERS.find(c => c.ch === scope).title;
+    list.innerHTML = '';
+    const shown = order.filter(id => {
+      const r = answers[id];
+      if (f === 'unanswered') return r === undefined;
+      if (f === 'missed') return r !== undefined && !isRight(id);
+      if (f === 'correct') return isRight(id);
+      return true;
+    });
+    if (!shown.length) {
+      const msg = { unanswered: 'Every question here is answered.', missed: 'No missed questions here.', correct: 'No correct answers yet.' }[f] || 'No questions.';
+      list.innerHTML = '<div class="empty">' + msg + ' Switch the filter to All questions to see the full set.</div>';
+    }
+    shown.forEach((id, i) => list.appendChild(card(id, i + 1)));
+    updateStats();
+  }
+
+  function updateStats() {
+    const ans = order.filter(id => id in answers).length;
+    const right = order.filter(isRight).length;
+    $('score').innerHTML = right + '/' + ans + ' <small>answered ' + ans + ' of ' + order.length + '</small>';
+    $('prog').style.width = (order.length ? ans / order.length * 100 : 0) + '%';
+    const old = document.querySelector('.done');
+    if (old) old.remove();
+    if (ans === order.length && order.length) {
+      const d = document.createElement('div');
+      d.className = 'done';
+      d.textContent = 'Finished: ' + right + ' of ' + order.length + ' (' + Math.round(right / order.length * 100) + '%).' +
+        (right < order.length ? ' Use Retry missed to go again.' : '');
+      $('list').appendChild(d);
+    }
+    renderTabs();
+  }
+
+  $('filter').onchange = render;
+  $('count').onchange = () => buildScope(false);
+  $('shuffle').onclick = () => buildScope(true);
+  $('reset').onclick = () => {
+    order.forEach(id => delete answers[id]); save();
+    $('filter').value = 'all';
+    buildScope(false);
+  };
+  $('retry').onclick = () => {
+    const missed = order.filter(id => id in answers && !isRight(id));
+    if (!missed.length) return;
+    missed.forEach(id => { delete answers[id]; optOrder[id] = shuffleArr(optOrder[id]); });
+    save();
+    order = shuffleArr(missed);
+    $('filter').value = 'all';
+    render();
+    window.scrollTo(0, 0);
+  };
+
+  $('count').hidden = scope !== 'all';
+  buildScope(false);
+})();
+</script>
+</body>
+</html>
