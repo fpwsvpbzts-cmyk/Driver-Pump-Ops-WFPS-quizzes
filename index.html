@@ -11,19 +11,19 @@
 <style>
 :root{
   --bg:#E7EAED; --panel:#FFFFFF; --ink:#1C2126; --muted:#5B6570; --line:#C9CFD5;
-  --red:#B3121D; --yellow:#F2C230; --good:#1F7A45; --goodbg:#E3F3E8; --badbg:#FBE4E5;
+  --red:#B3121D; --yellow:#F2C230; --good:#1F7A45; --goodbg:#E3F3E8; --badbg:#FBE4E5; --warn:#A86A00;
   box-sizing:border-box;
   padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#15191D; --panel:#1F252B; --ink:#E9ECEF; --muted:#9AA4AE; --line:#343C44;
-    --red:#E0414B; --good:#4FC27F; --goodbg:#17301F; --badbg:#3A1A1C;
+    --red:#E0414B; --good:#4FC27F; --goodbg:#17301F; --badbg:#3A1A1C; --warn:#E3A83C;
   }
 }
 :root[data-theme="dark"]{
   --bg:#15191D; --panel:#1F252B; --ink:#E9ECEF; --muted:#9AA4AE; --line:#343C44;
-  --red:#E0414B; --good:#4FC27F; --goodbg:#17301F; --badbg:#3A1A1C;
+  --red:#E0414B; --good:#4FC27F; --goodbg:#17301F; --badbg:#3A1A1C; --warn:#E3A83C;
 }
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.5 "Barlow",system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -82,6 +82,58 @@ button:focus-visible,select:focus-visible{outline:3px solid var(--yellow);outlin
 .src[aria-pressed="true"] small{color:var(--bg);opacity:.8}
 .tag{display:inline-block;font:700 11px "Barlow",sans-serif;padding:1px 6px;border-radius:4px;border:1px solid var(--line);margin-right:6px;color:var(--muted)}
 .tag.TEST{border-color:var(--red);color:var(--red)}
+[hidden]{display:none!important}
+.rangebox{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap;font:600 15px "Barlow",sans-serif}
+.rangebox label{display:inline-flex;gap:6px;align-items:center}
+.tab.stats-tab{border-color:var(--ink)}
+.tab.stats-tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.tab.stats-tab[aria-selected="true"] small{color:var(--bg)}
+#stats h3{font:700 1.3rem/1.1 "Barlow Condensed","Arial Narrow",sans-serif;margin:26px 0 10px}
+#stats .muted{color:var(--muted);font-size:14px;margin:4px 0}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kpi{background:var(--panel);border-radius:4px;padding:12px}
+.kpi b{display:block;font:700 2rem/1 "Barlow Condensed",sans-serif}
+.kpi b em{font-style:normal;font-size:1rem;color:var(--muted)}
+.kpi span{font-size:13px;color:var(--muted);line-height:1.25;display:block;margin-top:4px}
+.focus{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fcol h3{margin-top:22px!important}
+.fitem{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;font:inherit;font-size:15px;color:var(--ink);background:var(--panel);border:0;border-left:5px solid var(--line);border-radius:4px;padding:9px 10px;margin-bottom:6px;cursor:pointer}
+.fitem b{font:700 1.15rem "Barlow Condensed",sans-serif}
+.fitem.bad{border-left-color:var(--red)} .fitem.good{border-left-color:var(--good)}
+.fitem:hover{outline:1.5px solid var(--ink)}
+.legend{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+.sw{display:inline-block;width:12px;height:12px;border-radius:2px;vertical-align:-1px}
+.sw.good{background:var(--good)} .sw.ok{background:var(--warn)} .sw.bad{background:var(--red)}
+.chrows{display:grid;gap:10px}
+.chrow{background:var(--panel);border-radius:4px;padding:12px 14px;border-left:5px solid var(--line)}
+.chrow.good{border-left-color:var(--good)} .chrow.ok{border-left-color:var(--warn)} .chrow.bad{border-left-color:var(--red)}
+.chhead{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.chname{font-weight:600}
+.lvl{font:700 .95rem "Barlow Condensed",sans-serif;white-space:nowrap;color:var(--muted)}
+.chrow.good .lvl{color:var(--good)} .chrow.ok .lvl{color:var(--warn)} .chrow.bad .lvl{color:var(--red)}
+.meter{height:10px;background:var(--bg);border-radius:5px;overflow:hidden;margin:8px 0 6px}
+.meter span{display:block;height:100%;background:var(--muted)}
+.chrow.good .meter span{background:var(--good)} .chrow.ok .meter span{background:var(--warn)} .chrow.bad .meter span{background:var(--red)}
+.chfoot{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:14px;color:var(--muted)}
+.chfoot b{color:var(--ink)}
+.chbtns{display:flex;gap:6px;margin-top:10px}
+.chbtns button,#clearStats{font:600 14px "Barlow",sans-serif;border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:6px 10px;border-radius:6px;cursor:pointer}
+.chbtns button:hover,#clearStats:hover{border-color:var(--ink)}
+.missed{padding-left:1.4em;margin:0}
+.missed li{background:var(--panel);border-radius:4px;padding:10px 12px;margin-bottom:8px}
+.missed .ans{margin:4px 0 0;font-weight:600;color:var(--good)}
+.plan{display:grid;gap:10px}
+.planrow{background:var(--panel);border-radius:4px;padding:12px 14px;border-left:5px solid var(--red)}
+.planhead{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.planhead .muted{margin:0;white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px}
+.chip{font:600 14px "Barlow",sans-serif;border:1.5px solid var(--line);border-radius:6px;padding:4px 8px}
+.chip em{font-style:normal;font-weight:500;color:var(--muted);font-size:12px;margin-left:2px}
+.chip.hot{border-color:var(--red)}
+.planbtn{font:600 14px "Barlow",sans-serif;border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:6px 10px;border-radius:6px;cursor:pointer}
+.planbtn:hover{border-color:var(--ink)}
+.clearrow{margin:24px 0 40px!important}
+@media (max-width:520px){.kpis{grid-template-columns:1fr 1fr}.kpis .kpi:last-child{grid-column:1/-1}.focus{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -111,12 +163,17 @@ button:focus-visible,select:focus-visible{outline:3px solid var(--yellow);outlin
       <option value="50">Random 50</option>
       <option value="100">Random 100</option>
     </select>
+    <span class="rangebox" id="rangeBox" hidden>
+      <label>Chapters <select id="rFrom" aria-label="From chapter"></select></label>
+      <label>to <select id="rTo" aria-label="To chapter"></select></label>
+    </span>
     <button id="shuffle">Shuffle</button>
     <button id="retry">Retry missed</button>
     <button id="reset">Reset</button>
     <div class="score" id="score"></div>
   </div>
   <div class="progress"><span id="prog"></span></div>
+  <div id="stats" hidden></div>
   <div id="list"></div>
 </main>
 <script>
@@ -145,17 +202,23 @@ const SOURCES = {"QUIZ": [{"ch": 1, "title": "General Apparatus Visual/Operation
   const idsFor = (src, ch) => {
     const srcs = src === 'BOTH' ? ['QUIZ', 'TEST'] : [src];
     let out = [];
-    srcs.forEach(s => Object.keys(ids[s]).forEach(k => { if (ch === 'all' || +k === ch) out = out.concat(ids[s][k]); }));
+    srcs.forEach(s => Object.keys(ids[s]).forEach(k => { if (ch === 'all' || +k === ch || (ch === 'range' && +k >= rng.from && +k <= rng.to)) out = out.concat(ids[s][k]); }));
     return out;
   };
 
-  let saved = { answers: {}, src: 'QUIZ', scope: 'all' };
+  let saved = { answers: {}, hist: {}, src: 'QUIZ', scope: 'all' };
   try { saved = Object.assign(saved, JSON.parse(localStorage.getItem(STORE)) || {}); } catch (e) {}
   const answers = saved.answers;
   let src = ['QUIZ', 'TEST', 'BOTH'].includes(saved.src) ? saved.src : 'QUIZ';
   let scope = saved.scope;
-  if (scope !== 'all' && !chaptersOf(src).includes(scope)) scope = 'all';
-  const save = () => { try { localStorage.setItem(STORE, JSON.stringify({ answers, src, scope })); } catch (e) {} };
+  const allChs = chaptersOf('BOTH');
+  let rng = saved.rng && allChs.includes(saved.rng.from) && allChs.includes(saved.rng.to) ? saved.rng : { from: allChs[0], to: allChs[allChs.length - 1] };
+  const okScope = s => s === 'all' || s === 'stats' || s === 'range' || chaptersOf(src).includes(s);
+  if (!okScope(scope)) scope = 'all';
+  // hist keeps every attempt (t = tries, c = correct, w = wrong) and is not cleared by Reset or Retry missed
+  const hist = saved.hist || {};
+  Object.keys(answers).forEach(id => { if (Q[id] && !hist[id]) { const ok = answers[id] === Q[id].a; hist[id] = { t: 1, c: ok ? 1 : 0, w: ok ? 0 : 1, s: ok ? 1 : 0 }; } });
+  const save = () => { try { localStorage.setItem(STORE, JSON.stringify({ answers, hist, src, scope, rng })); } catch (e) {} };
 
   let order = [], optOrder = {};
   const $ = id => document.getElementById(id);
@@ -165,13 +228,21 @@ const SOURCES = {"QUIZ": [{"ch": 1, "title": "General Apparatus Visual/Operation
   const stat = list => { const a = list.filter(id => id in answers).length; return a ? list.filter(isRight).length + '/' + a : list.length + ' q'; };
 
   function buildScope(shuffle) {
+    const isStats = scope === 'stats';
+    document.querySelector('.bar').hidden = isStats;
+    document.querySelector('.progress').hidden = isStats;
+    $('list').hidden = isStats;
+    $('stats').hidden = !isStats;
+    if (isStats) { order = []; renderStats(); renderNav(); return; }
     let list = idsFor(src, scope);
-    const count = scope === 'all' ? +$('count').value : 0;
+    const multi = scope === 'all' || scope === 'range';
+    const count = multi ? +$('count').value : 0;
     if (count > 0) { list = shuffleArr(list).slice(0, count); shuffle = true; }
     order = shuffle ? shuffleArr(list) : list;
     optOrder = {};
     order.forEach(id => { const idx = Q[id].o.map((_, i) => i); optOrder[id] = shuffle ? shuffleArr(idx) : idx; });
-    $('count').hidden = scope !== 'all';
+    $('count').hidden = !multi;
+    $('rangeBox').hidden = scope !== 'range';
     render();
   }
 
@@ -184,7 +255,7 @@ const SOURCES = {"QUIZ": [{"ch": 1, "title": "General Apparatus Visual/Operation
       b.onclick = () => {
         if (src === v) return;
         src = v;
-        if (scope !== 'all' && !chaptersOf(src).includes(scope)) scope = 'all';
+        if (!okScope(scope)) scope = 'all';
         save(); $('filter').value = 'all'; buildScope(false);
       };
       sb.appendChild(b);
@@ -197,7 +268,18 @@ const SOURCES = {"QUIZ": [{"ch": 1, "title": "General Apparatus Visual/Operation
       b.onclick = () => { scope = value; save(); $('filter').value = 'all'; buildScope(false); b.scrollIntoView({ block: 'nearest', inline: 'nearest' }); };
       tabs.appendChild(b);
     };
+    const sb2 = document.createElement('button');
+    sb2.className = 'tab stats-tab'; sb2.setAttribute('role', 'tab'); sb2.setAttribute('aria-selected', scope === 'stats'); sb2.title = 'Statistics';
+    const ov = summarize(idsFor(src, 'all'));
+    sb2.innerHTML = 'Stats<small>' + (ov.att ? Math.round(ov.acc * 100) + '%' : 'none yet') + '</small>';
+    sb2.onclick = () => { scope = 'stats'; save(); buildScope(false); };
+    tabs.appendChild(sb2);
     make('all', 'All', 'All chapters');
+    const rb = document.createElement('button');
+    rb.className = 'tab range-tab'; rb.setAttribute('role', 'tab'); rb.setAttribute('aria-selected', scope === 'range'); rb.title = 'Pick a range of chapters';
+    rb.innerHTML = 'Range<small>Ch ' + rng.from + ' to ' + rng.to + '</small>';
+    rb.onclick = () => { scope = 'range'; save(); $('filter').value = 'all'; buildScope(false); };
+    tabs.appendChild(rb);
     chaptersOf(src).forEach(ch => make(ch, 'Ch ' + ch, TITLES[ch] || ''));
   }
 
@@ -206,7 +288,7 @@ const SOURCES = {"QUIZ": [{"ch": 1, "title": "General Apparatus Visual/Operation
     const el = document.createElement('div');
     el.className = 'q' + (done ? (r === q.a ? ' right' : ' wrong') : '');
     const tag = src === 'BOTH' ? '<span class="tag ' + q.src + '">' + (q.src === 'TEST' ? 'Test' : 'Quiz') + '</span>' : '';
-    const where = scope === 'all' ? 'Chapter ' + q.ch + ', question ' + q.n + ' ' : (src === 'BOTH' ? 'Question ' + q.n + ' ' : '');
+    const where = (scope === 'all' || scope === 'range') ? 'Chapter ' + q.ch + ', question ' + q.n + ' ' : (src === 'BOTH' ? 'Question ' + q.n + ' ' : '');
     el.innerHTML = '<div class="qhead"><span class="num">' + n + '</span><p class="prompt">' + esc(q.p) + '</p></div>' +
       '<div class="page">' + tag + where + (q.pg ? '[p. ' + esc(q.pg) + ']' : '') + '</div>';
     const opts = document.createElement('div'); opts.className = 'opts';
@@ -214,7 +296,13 @@ const SOURCES = {"QUIZ": [{"ch": 1, "title": "General Apparatus Visual/Operation
       const b = document.createElement('button'); b.className = 'opt';
       b.innerHTML = '<span class="l">' + LETTERS[k] + '</span><span>' + esc(q.o[oi]) + '</span>';
       if (done) { b.disabled = true; if (oi === q.a) b.classList.add('correct'); else if (oi === r) b.classList.add('chosen-wrong'); }
-      b.onclick = () => { answers[id] = oi; save(); el.replaceWith(card(id, n)); updateStats(); };
+      b.onclick = () => {
+        answers[id] = oi;
+        const h = hist[id] || (hist[id] = { t: 0, c: 0, w: 0, s: 0 });
+        if (h.s === undefined) h.s = 0;
+        h.t++; if (oi === q.a) { h.c++; h.s++; } else { h.w++; h.s = 0; }
+        save(); el.replaceWith(card(id, n)); updateStats();
+      };
       opts.appendChild(b);
     });
     el.appendChild(opts);
@@ -230,7 +318,7 @@ const SOURCES = {"QUIZ": [{"ch": 1, "title": "General Apparatus Visual/Operation
   function render() {
     const f = $('filter').value, list = $('list');
     const srcName = { QUIZ: 'Quizzes', TEST: 'Tests', BOTH: 'Quizzes + Tests' }[src];
-    $('scopeTitle').textContent = srcName + ': ' + (scope === 'all' ? 'All chapters' : 'Chapter ' + scope + (TITLES[scope] ? ', ' + TITLES[scope] : ''));
+    $('scopeTitle').textContent = srcName + ': ' + (scope === 'all' ? 'All chapters' : scope === 'range' ? (rng.from === rng.to ? 'Chapter ' + rng.from : 'Chapters ' + rng.from + ' to ' + rng.to) : 'Chapter ' + scope + (TITLES[scope] ? ', ' + TITLES[scope] : ''));
     list.innerHTML = '';
     const shown = order.filter(id => {
       const r = answers[id];
@@ -262,7 +350,130 @@ const SOURCES = {"QUIZ": [{"ch": 1, "title": "General Apparatus Visual/Operation
 
   $('filter').onchange = render;
   $('count').onchange = () => buildScope(false);
+  [$('rFrom'), $('rTo')].forEach(sel => {
+    sel.innerHTML = allChs.map(c => '<option value="' + c + '">' + c + '</option>').join('');
+  });
+  $('rFrom').value = rng.from; $('rTo').value = rng.to;
+  const onRange = changed => {
+    let f = +$('rFrom').value, to = +$('rTo').value;
+    if (f > to) { if (changed === 'from') to = f; else f = to; }
+    rng = { from: f, to: to }; $('rFrom').value = f; $('rTo').value = to;
+    save(); $('filter').value = 'all'; buildScope(false);
+  };
+  $('rFrom').onchange = () => onRange('from');
+  $('rTo').onchange = () => onRange('to');
   $('shuffle').onclick = () => buildScope(true);
+  function summarize(list) {
+    let seen = 0, att = 0, cor = 0;
+    list.forEach(id => { const h = hist[id]; if (h && h.t) { seen++; att += h.t; cor += h.c; } });
+    return { total: list.length, seen, att, cor, acc: att ? cor / att : 0 };
+  }
+  const MIN = 5;
+  const level = s => s.seen < MIN ? (s.seen ? 'few' : 'none') : s.acc >= 0.85 ? 'good' : s.acc >= 0.7 ? 'ok' : 'bad';
+  const LEVEL_TEXT = { good: 'Strong', ok: 'Getting there', bad: 'Needs work', few: 'Too few answered', none: 'Not started' };
+  const pct = x => Math.round(x * 100) + '%';
+
+  // A missed question stays on the review list until it is answered correctly twice in a row
+  const streak = id => { const h = hist[id]; return h.s !== undefined ? h.s : (answers[id] === Q[id].a ? 1 : 0); };
+  const needsReview = id => hist[id] && hist[id].w > 0 && streak(id) < 2;
+  const pagesOf = pg => {
+    const out = []; if (!pg) return out;
+    String(pg).split(',').forEach(part => {
+      const m = part.match(/(\d+)\s*-\s*(\d+)/);
+      if (m) { for (let p = +m[1]; p <= +m[2]; p++) out.push(p); }
+      else { const n = part.match(/\d+/); if (n) out.push(+n[0]); }
+    });
+    return out;
+  };
+  function reviewPlan(list) {
+    const byCh = {};
+    list.filter(needsReview).forEach(id => {
+      const q = Q[id], ps = pagesOf(q.pg); if (!ps.length) return;
+      const c = byCh[q.ch] || (byCh[q.ch] = { ch: q.ch, pages: {}, qs: 0 });
+      c.qs++;
+      ps.forEach(p => c.pages[p] = (c.pages[p] || 0) + 1);
+    });
+    return Object.values(byCh).map(c => {
+      const ps = Object.keys(c.pages).map(Number).sort((a, b) => a - b), ranges = [];
+      ps.forEach(p => {
+        const r = ranges[ranges.length - 1];
+        if (r && p - r.to <= 2) { r.to = p; r.n += c.pages[p]; } else ranges.push({ from: p, to: p, n: c.pages[p] });
+      });
+      return { ch: c.ch, qs: c.qs, ranges };
+    }).sort((a, b) => b.qs - a.qs || a.ch - b.ch);
+  }
+
+  function practice(ch, filter) {
+    scope = ch; save(); $('filter').value = filter; buildScope(false); window.scrollTo(0, 0);
+  }
+
+  function renderStats() {
+    const srcName = { QUIZ: 'Quizzes', TEST: 'Tests', BOTH: 'Quizzes + Tests' }[src];
+    $('scopeTitle').textContent = srcName + ': Statistics';
+    const box = $('stats');
+    const ov = summarize(idsFor(src, 'all'));
+    const rows = chaptersOf(src).map(ch => Object.assign({ ch }, summarize(idsFor(src, ch))));
+    if (!ov.att) {
+      box.innerHTML = '<div class="empty">No answers yet for ' + esc(srcName.toLowerCase()) + '. Answer some questions and your results by chapter will show up here.</div>';
+      return;
+    }
+    const ranked = rows.filter(r => r.seen >= MIN).sort((a, b) => a.acc - b.acc);
+    const weak = ranked.filter(r => r.acc < 0.85).slice(0, 3);
+    const strong = ranked.filter(r => r.acc >= 0.85).slice().reverse().slice(0, 3);
+    let html = '<div class="kpis">' +
+      '<div class="kpi"><b>' + pct(ov.acc) + '</b><span>accuracy across all attempts</span></div>' +
+      '<div class="kpi"><b>' + ov.seen + '<em> of ' + ov.total + '</em></b><span>questions answered at least once</span></div>' +
+      '<div class="kpi"><b>' + ov.att + '</b><span>total attempts</span></div></div>';
+    html += '<div class="focus"><div class="fcol"><h3>Focus on</h3>' +
+      (weak.length ? weak.map(r => '<button class="fitem bad" data-ch="' + r.ch + '"><span>Ch ' + r.ch + ' ' + esc(TITLES[r.ch] || '') + '</span><b>' + pct(r.acc) + '</b></button>').join('')
+        : '<p class="muted">' + (ranked.length ? 'Nothing below 85% so far.' : 'Answer at least ' + MIN + ' questions in a chapter to rank it.') + '</p>') +
+      '</div><div class="fcol"><h3>Doing well</h3>' +
+      (strong.length ? strong.map(r => '<button class="fitem good" data-ch="' + r.ch + '"><span>Ch ' + r.ch + ' ' + esc(TITLES[r.ch] || '') + '</span><b>' + pct(r.acc) + '</b></button>').join('')
+        : '<p class="muted">No chapter at 85% or higher yet.</p>') + '</div></div>';
+    const plan = reviewPlan(idsFor(src, 'all'));
+    html += '<h3>Pages to review</h3>';
+    if (plan.length) {
+      html += '<p class="muted">Based on questions you have missed. A page drops off once you answer its questions correctly twice in a row. Chapters with the most missed questions are listed first.</p><div class="plan">' +
+        plan.map(c => '<div class="planrow"><div class="planhead"><span class="chname">Ch ' + c.ch + ' ' + esc(TITLES[c.ch] || '') + '</span><span class="muted">' + c.qs + ' question' + (c.qs > 1 ? 's' : '') + '</span></div><div class="chips">' +
+          c.ranges.map(r => '<span class="chip' + (r.n >= 3 ? ' hot' : '') + '">' + (r.from === r.to ? 'p. ' + r.from : 'pp. ' + r.from + ' to ' + r.to) + ' <em>' + r.n + ' missed</em></span>').join('') +
+          '</div><button class="planbtn" data-ch="' + c.ch + '">Practice missed</button></div>').join('') + '</div>';
+    } else html += '<p class="muted">Nothing to review right now. Missed questions will add their pages here.</p>';
+    html += '<h3>By chapter</h3><p class="muted legend"><span class="sw good"></span>85% and up <span class="sw ok"></span>70 to 84% <span class="sw bad"></span>under 70%. Chapters need ' + MIN + ' answered questions for a rating.</p><div class="chrows">';
+    rows.forEach(r => {
+      const lv = level(r);
+      let split = '';
+      if (src === 'BOTH') {
+        const qz = summarize(ids.QUIZ[r.ch] || []), ts = summarize(ids.TEST[r.ch] || []);
+        split = '<span class="split">Quiz ' + (qz.att ? pct(qz.acc) : 'n/a') + ', Test ' + (ts.att ? pct(ts.acc) : 'n/a') + '</span>';
+      }
+      html += '<div class="chrow ' + lv + '">' +
+        '<div class="chhead"><span class="chname">Ch ' + r.ch + ' ' + esc(TITLES[r.ch] || '') + '</span><span class="lvl">' + LEVEL_TEXT[lv] + '</span></div>' +
+        '<div class="meter"><span style="width:' + (r.att ? r.acc * 100 : 0) + '%"></span></div>' +
+        '<div class="chfoot"><span>' + (r.att ? '<b>' + pct(r.acc) + '</b> correct (' + r.cor + ' of ' + r.att + ' attempts)' : 'No attempts yet') + '</span>' +
+        '<span>' + r.seen + ' of ' + r.total + ' seen</span>' + split + '</div>' +
+        '<div class="chbtns"><button data-ch="' + r.ch + '" data-f="missed">Practice missed</button><button data-ch="' + r.ch + '" data-f="unanswered">Unanswered</button></div>' +
+        '</div>';
+    });
+    html += '</div>';
+    const missed = idsFor(src, 'all').filter(id => hist[id] && hist[id].w > 0)
+      .sort((a, b) => hist[b].w - hist[a].w || (hist[a].c / hist[a].t) - (hist[b].c / hist[b].t)).slice(0, 10);
+    html += '<h3>Most missed questions</h3>';
+    html += missed.length ? '<ol class="missed">' + missed.map(id => {
+      const q = Q[id], h = hist[id];
+      return '<li><p class="prompt">' + esc(q.p) + '</p><p class="muted">' + (q.src === 'TEST' ? 'Test' : 'Quiz') + ', Chapter ' + q.ch + ', question ' + q.n +
+        (q.pg ? ' [p. ' + esc(q.pg) + ']' : '') + '. Missed ' + h.w + ' of ' + h.t + ' tries.</p><p class="ans">Answer: ' + esc(q.o[q.a]) + '</p></li>';
+    }).join('') + '</ol>' : '<p class="muted">No missed questions yet.</p>';
+    html += '<p class="muted clearrow">Statistics count every attempt, including retries, and are kept when you use Reset or Retry missed. <button id="clearStats">Clear statistics</button></p>';
+    box.innerHTML = html;
+    box.querySelectorAll('.planbtn').forEach(b => b.onclick = () => practice(+b.dataset.ch, 'missed'));
+    box.querySelectorAll('.fitem').forEach(b => b.onclick = () => practice(+b.dataset.ch, 'all'));
+    box.querySelectorAll('.chbtns button').forEach(b => b.onclick = () => practice(+b.dataset.ch, b.dataset.f));
+    $('clearStats').onclick = () => {
+      if (!confirm('Clear statistics for ' + srcName.toLowerCase() + '? Your current answers stay.')) return;
+      idsFor(src, 'all').forEach(id => delete hist[id]); save(); renderStats(); renderNav();
+    };
+  }
+
   $('reset').onclick = () => { order.forEach(id => delete answers[id]); save(); $('filter').value = 'all'; buildScope(false); };
   $('retry').onclick = () => {
     const missed = order.filter(id => id in answers && !isRight(id));
